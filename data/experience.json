@@ -1,0 +1,76 @@
+[
+  {
+    "company": "Securovix",
+    "role": "Co Founder & CTO",
+    "period": "Nov 2025 / Present",
+    "location": "London, United Kingdom",
+    "tags": ["Leadership", "AI Agents", "Pentesting", "Architecture"],
+    "highlights": [
+      "Founded a cross disciplinary startup delivering secure, AI driven digital solutions across design, development, cybersecurity, automation, and growth.",
+      "Led penetration testing, malware analysis, SIEM integration, and compliance audits for client platforms.",
+      "Designed and deployed AI agents using n8n and LLMs to automate business operations and reduce operational costs.",
+      "Built and secured scalable web and mobile applications with a security first architecture.",
+      "Implemented data driven digital growth pipelines combining content, automation, and lead generation."
+    ]
+  },
+  {
+    "company": "SecureTech Insight",
+    "role": "IT Support Technician",
+    "period": "Jan 2025 / Nov 2025",
+    "location": "Greater London, UK",
+    "tags": ["AD", "Office 365", "Intune", "ServiceNow"],
+    "highlights": [
+      "Delivered first line and second line IT support, remote and on site, across Windows and Mac for hardware, software, and network issues.",
+      "Administered Active Directory: user account management, password resets, group policy updates and secure access control.",
+      "Managed Office 365 admin including mailbox setup, distribution lists, and permissions.",
+      "Used Intune and Autopilot for device rollout, imaging, and software deployment.",
+      "Logged and resolved incidents via ServiceNow, Jira, Freshdesk under SLA.",
+      "Supported DNS, DHCP, VPN troubleshooting and maintained IT asset inventory."
+    ]
+  },
+  {
+    "company": "Secure Tech Insight",
+    "role": "Senior Data Analyst",
+    "period": "Sep 2024 / Jan 2025",
+    "location": "Greater London, UK",
+    "tags": ["Power BI", "Python", "ML", "ETL"],
+    "highlights": [
+      "Led data analytics initiatives supporting product, finance, marketing, and operations, driving revenue, adoption, and cost savings.",
+      "Designed Power BI dashboards reviewed weekly by senior leadership: KPI trends, revenue health, churn predictions.",
+      "Automated reporting with Python, reduced manual workload by 70%.",
+      "Built Python and SQL ETL pipelines, cutting reporting time from hours to minutes (85% reliability improvement).",
+      "Developed Random Forest and Gradient Boosting models to forecast demand and predict churn, improving retention interventions by 27%.",
+      "Partnered with Engineering and Cloud teams on data governance, 40% faster query performance."
+    ]
+  },
+  {
+    "company": "Secure Tech",
+    "role": "Cloud Analyst",
+    "period": "Apr 2024 / Sep 2024",
+    "location": "Cheltenham, UK",
+    "tags": ["AWS", "Azure", "IAM", "Python/Bash"],
+    "highlights": [
+      "Monitored AWS CloudWatch and Azure Monitor for uptime, performance, and error events.",
+      "Responded to alerts, performed root cause investigations, and escalated incidents.",
+      "Provisioned EC2, S3, IAM roles, and Azure VMs per stakeholder requests.",
+      "Enforced least privilege through IAM access reviews and policy updates.",
+      "Automated maintenance with Python and Bash, improved task efficiency by 70%.",
+      "Maintained cloud documentation, architecture diagrams, and operational runbooks."
+    ]
+  },
+  {
+    "company": "Fidelity National Financial",
+    "role": "Data Analyst",
+    "period": "Dec 2020 / Aug 2023",
+    "location": "Bangalore, India",
+    "tags": ["SQL", "Python", "Excel", "Risk & Compliance"],
+    "highlights": [
+      "Analysed large structured and unstructured datasets, improved decision accuracy by 30%.",
+      "Validated and corrected critical reports, reduced reporting errors by 35%.",
+      "Automated pipelines via SQL, Python, and Excel, cut manual workload by 40%.",
+      "Built dashboards and performance metrics with 45% KPI visibility uplift.",
+      "Cross functional KPI alignment with operations, finance, compliance, IT, 20% improvement in data driven strategies.",
+      "Reduced data discrepancies by 30% via quality checks. Supported US mortgage regulatory compliance."
+    ]
+  }
+]

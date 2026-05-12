@@ -1,0 +1,245 @@
+{
+  "featured": [
+    {
+      "slug": "aegisscan",
+      "name": "AegisScan",
+      "repo": "Aegisscan",
+      "url": "https://github.com/far-sae/Aegisscan",
+      "tagline": "All in one AI correlated cybersecurity scanner",
+      "category": "Cybersecurity",
+      "stack": ["JavaScript", "Node.js", "AI Correlation", "Security"],
+      "summary": "Multi layer security scanner covering web apps, APIs, networks and configurations, fused with intelligent AI correlation so signal beats noise.",
+      "problem": "Security teams drown in scanner output. Five tools produce five disjoint reports, and the actual exploit chain hides between them. Triaging that manually wastes the first hour of every incident.",
+      "approach": "AegisScan runs web, API, network, and configuration scanners in one pass, then pipes their findings into an LLM backed correlation layer that clusters related signals into a single attack story. Each finding lands with severity, evidence, and a remediation hint.",
+      "highlights": [
+        "Multi layer scanning: web app, API, network, configuration",
+        "AI correlation engine that groups related findings into one incident",
+        "Severity scoring and remediation guidance per cluster",
+        "Built for both quick assessments and deep audits"
+      ],
+      "outcomes": [
+        "Cuts triage time by combining five tool outputs into one ranked feed",
+        "Maps related findings into a single exploit narrative",
+        "Reduces false positive fatigue through cross tool corroboration"
+      ],
+      "accent": "#7c5cff"
+    },
+    {
+      "slug": "real-time-threat-detection",
+      "name": "Real Time Threat Detection",
+      "repo": "Real-time-threat-detection",
+      "url": "https://github.com/far-sae/Real-time-threat-detection",
+      "tagline": "ML driven multi cloud SOC pipeline",
+      "category": "Cybersecurity",
+      "stack": ["Python", "Machine Learning", "AWS", "Azure", "SIEM"],
+      "summary": "A production grade detection system that streams events from AWS and Azure into ML models to flag threats in real time across both clouds.",
+      "problem": "Most SOC tooling treats AWS and Azure as separate worlds. Attackers don't. They pivot. We needed a single pipeline that ingested both clouds and learned what normal looks like.",
+      "approach": "Built a streaming ingest from CloudTrail and Azure Monitor into a feature pipeline, trained anomaly and classification models on labelled events, and exposed alerts through a unified API so SOC analysts see one queue, not two.",
+      "highlights": [
+        "Unified AWS and Azure event ingestion",
+        "Trained anomaly and classification models on labelled security events",
+        "Real time alerting with severity and source cloud tagging",
+        "Designed for SOC analyst workflows, not just dashboards"
+      ],
+      "outcomes": [
+        "Detects cross cloud attacker pivoting in a single queue",
+        "Reduces dwell time by surfacing anomalies as they happen",
+        "Provides labelled training pipeline for continued model tuning"
+      ],
+      "accent": "#22d3ee"
+    },
+    {
+      "slug": "ai-security-analyst",
+      "name": "AI Security Analyst",
+      "repo": "AI-security-analyst",
+      "url": "https://github.com/far-sae/AI-security-analyst",
+      "tagline": "Multi agent SOC assistant powered by Gemini",
+      "category": "AI · Cybersecurity",
+      "stack": ["Python", "FastAPI", "Google Gemini", "Async", "Multi Agent"],
+      "summary": "A multi agent cybersecurity system that automates log analysis, anomaly detection, threat intel lookup, response recommendations, and incident report generation.",
+      "problem": "A junior analyst spends 80% of their day on the boring 80%: correlating logs, looking up IOCs, writing the same report. The work scales linearly with alert volume, and burnout follows.",
+      "approach": "Built specialised agents (log parser, anomaly detector, threat intel, responder, reporter) coordinated via an orchestrator. Each agent has a narrow scope and a tool surface. FastAPI exposes the system as an API. A CLI batches it across thousands of logs.",
+      "highlights": [
+        "Specialised agents for log analysis, anomaly detection, threat intel, response, reporting",
+        "Async FastAPI deployment for real time queries",
+        "Batch CLI for processing historical logs at scale",
+        "Generates analyst ready incident reports"
+      ],
+      "outcomes": [
+        "Automates the long tail of L1 SOC work",
+        "Produces consistent incident reports without human drafting",
+        "Frees senior analysts for actual threat hunting"
+      ],
+      "accent": "#34d399"
+    },
+    {
+      "slug": "autonomus",
+      "name": "Autonomus",
+      "repo": "Autonomus",
+      "url": "https://github.com/far-sae/Autonomus",
+      "tagline": "Detect, remediate and prove cloud compliance autonomously",
+      "category": "Cloud Security",
+      "stack": ["Python", "AWS", "Azure", "Policy as Code", "Compliance"],
+      "summary": "A production grade platform that autonomously detects compliance drift across cloud environments, remediates it, and produces audit ready evidence.",
+      "problem": "Compliance teams ship spreadsheets. Engineering teams ship infrastructure. The gap between what the policy says and what the cloud actually looks like is where audits fail.",
+      "approach": "Continuously scans cloud accounts against policy as code rules, auto remediates safe deltas like open S3 buckets, dangling IAM, public security groups, and bundles every action into an immutable audit trail that satisfies the standard.",
+      "highlights": [
+        "Policy as code compliance scanning across AWS and Azure",
+        "Safe by default auto remediation with explicit allow list",
+        "Immutable audit trail of every detection and fix",
+        "Designed to satisfy real audit frameworks, not just produce alerts"
+      ],
+      "outcomes": [
+        "Closes the gap between written policy and actual cloud state",
+        "Turns compliance from a quarterly fire drill into a continuous baseline",
+        "Produces the evidence auditors actually want"
+      ],
+      "accent": "#f59e0b"
+    },
+    {
+      "slug": "etl-financial",
+      "name": "Automated ETL for Financial Analytics",
+      "repo": "Automated-ETL-Pipeline-for-Financial-Analytics",
+      "url": "https://github.com/far-sae/Automated-ETL-Pipeline-for-Financial-Analytics",
+      "tagline": "Production ETL across fifteen plus financial data sources",
+      "category": "Data Engineering",
+      "stack": ["Python", "SQL", "Orchestration", "Validation"],
+      "summary": "A production ready ETL pipeline for financial analytics with fifteen plus data sources, automated validation, transformation, and orchestration.",
+      "problem": "Finance teams stitched data from fifteen vendors with brittle Excel macros. Errors compounded by month end and reporting accuracy slipped.",
+      "approach": "Built a modular pipeline. Each source as a plug in adapter, each transform as a tested step, each load as an idempotent write. Validation gates between every stage stop bad data from poisoning downstream reports.",
+      "highlights": [
+        "Fifteen plus financial data sources unified under one ingestion layer",
+        "Validation gates between extract, transform, load",
+        "Idempotent loads, safe to re run on partial failure",
+        "Orchestration with retry, alerting, and lineage"
+      ],
+      "outcomes": [
+        "Cut reporting time from hours to minutes",
+        "85% improvement in data refresh reliability",
+        "Validation catches bad source data before it hits dashboards"
+      ],
+      "accent": "#22d3ee"
+    },
+    {
+      "slug": "powerbi-executive",
+      "name": "Power BI Executive Dashboard",
+      "repo": "Interactive-Power-BI-Executive-Dashboard",
+      "url": "https://github.com/far-sae/Interactive-Power-BI-Executive-Dashboard",
+      "tagline": "C suite KPIs with predictive analytics",
+      "category": "Analytics",
+      "stack": ["Power BI", "Python", "DAX", "Forecasting"],
+      "summary": "Enterprise grade BI dashboard giving executives real time visibility into KPIs, emerging trends, and predictive analytics.",
+      "problem": "Executives don't want twelve dashboards. They want one screen that tells them what's about to break.",
+      "approach": "Layered forecasting and anomaly highlights directly into the executive view. KPI tiles drill into trend explanations, not just numbers. Predictive models surface this is going to miss target before quarter end, not after.",
+      "highlights": [
+        "Single executive surface across revenue, operations, customer health",
+        "Predictive analytics layered onto KPI tiles",
+        "Drill throughs with explanations, not just numbers",
+        "Weekly leadership cadence as the design constraint"
+      ],
+      "outcomes": [
+        "Reviewed weekly by senior leadership",
+        "Shifted reporting from descriptive to predictive",
+        "Anchored revenue, churn, and engagement conversations in one place"
+      ],
+      "accent": "#7c5cff"
+    },
+    {
+      "slug": "churn-ml",
+      "name": "ML Churn Prediction",
+      "repo": "Machine-Learning-Churn-Prediction-Model",
+      "url": "https://github.com/far-sae/Machine-Learning-Churn-Prediction-Model",
+      "tagline": "Ensemble model and CRM retention triggers",
+      "category": "Machine Learning",
+      "stack": ["Python", "scikit learn", "Ensemble Models", "Feature Engineering"],
+      "summary": "Production ML system predicting customer churn with automated retention campaign triggering. Ensemble modelling, deep feature engineering, CRM integration.",
+      "problem": "Marketing knew customers were churning. They just didn't know which ones, when, or why. By the time the dashboard showed it, the customer was gone.",
+      "approach": "Engineered behaviour, usage, and support features, trained an ensemble of Random Forest and Gradient Boosting, exposed scores via API, and wired the high risk segment directly into CRM retention triggers, so prediction became action.",
+      "highlights": [
+        "Ensemble of Random Forest and Gradient Boosting",
+        "Behaviour, usage, and support signal feature engineering",
+        "CRM integration. Predictions trigger retention campaigns",
+        "Production deployment, not a notebook"
+      ],
+      "outcomes": [
+        "27% improvement in retention interventions",
+        "Identified at risk customer cohorts proactively",
+        "Closed the loop from model output to outreach"
+      ],
+      "accent": "#34d399"
+    },
+    {
+      "slug": "it-support-automation",
+      "name": "Smart IT Support Automation",
+      "repo": "Smart-IT-Support-Automation-System",
+      "url": "https://github.com/far-sae/Smart-IT-Support-Automation-System",
+      "tagline": "Seventy percent plus ticket auto resolution",
+      "category": "Automation",
+      "stack": ["Python", "LLMs", "Ticketing Integration"],
+      "summary": "Production ready IT support automation that auto resolves IT tickets with a 70% plus resolution rate.",
+      "problem": "L1 IT tickets are repetitive: password resets, VPN, mailbox permissions, printer drivers. Every minute of human time on those is a minute not spent on real incidents.",
+      "approach": "Classifies inbound tickets, matches against a runbook library, and executes safe remediations against AD, O365, and device management APIs. Tickets the system isn't confident on get routed to a human with full diagnostic context attached.",
+      "highlights": [
+        "Inbound ticket classification with confidence scoring",
+        "Runbook driven safe auto remediation",
+        "Human handoff includes pre collected diagnostics",
+        "Built around real L1 and L2 categories, not synthetic ones"
+      ],
+      "outcomes": [
+        "Seventy percent plus ticket auto resolution",
+        "Faster MTTR on the remaining human handled tickets",
+        "Frees senior IT for engineering work"
+      ],
+      "accent": "#f59e0b"
+    },
+    {
+      "slug": "network-ids",
+      "name": "Network Intrusion Detection",
+      "repo": "Network_Intrusion_Detection",
+      "url": "https://github.com/far-sae/Network_Intrusion_Detection",
+      "tagline": "ML based intrusion detection on network flows",
+      "category": "Cybersecurity",
+      "stack": ["Python", "Machine Learning", "Network Security"],
+      "summary": "Machine learning network intrusion detection system trained on labelled flow data to spot intrusions in real traffic.",
+      "problem": "Signature based IDS misses anything novel. Pure anomaly detection over fires. You need a model that learns flow behaviour without melting on benign traffic.",
+      "approach": "Feature engineered network flow records, trained classifiers on labelled intrusion data, and tuned thresholds against false positive cost, not just precision.",
+      "highlights": [
+        "Flow level feature engineering",
+        "Supervised classifier trained on labelled attacks",
+        "Threshold tuning against analyst time cost",
+        "Foundations for hybrid signature and ML detection"
+      ],
+      "outcomes": [
+        "Detects novel patterns signature engines miss",
+        "Operates on per flow features, not raw packets",
+        "Tuned for analyst workload, not just F1"
+      ],
+      "accent": "#22d3ee"
+    },
+    {
+      "slug": "crypto-vault",
+      "name": "Cyber Vault",
+      "repo": "cyber-vault-new",
+      "url": "https://github.com/far-sae/cyber-vault-new",
+      "tagline": "Secure gateway for digital assets",
+      "category": "Web · Fintech",
+      "stack": ["JavaScript", "Web", "Crypto APIs"],
+      "summary": "Secure interface to manage, track, and trade cryptocurrencies. Designed for both first time and experienced users.",
+      "problem": "Most crypto interfaces are either traders' cockpits or onboarding wizards. There's no clean middle that respects both.",
+      "approach": "Built a layered UI. A low cognitive load entry surface that promotes the right info first, with progressive disclosure for power features. Security cues like key handling and confirmation steps are visible without being noisy.",
+      "highlights": [
+        "Progressive disclosure UI. Beginner default, power user on demand",
+        "Portfolio tracking, transaction view, market data",
+        "Security conscious confirmation flow",
+        "Responsive design for desktop and mobile"
+      ],
+      "outcomes": [
+        "Removes the cliff between beginner and trader UIs",
+        "Surfaces security context where it matters",
+        "Modern interface for portfolio and market view"
+      ],
+      "accent": "#7c5cff"
+    }
+  ],
+  "other": []
+}

@@ -1,0 +1,54 @@
+{
+  "name": "Faraz Saeed",
+  "fullName": "Faraz Saeed Khwaja",
+  "title": "Co Founder & CTO at Securovix",
+  "tagline": "AI driven digital solutions. Cybersecurity, cloud, data.",
+  "location": "London, United Kingdom",
+  "email": "farazs156@gmail.com",
+  "links": {
+    "github": "https://github.com/far-sae",
+    "linkedin": "https://www.linkedin.com/in/farazsaeed-10759014b",
+    "company": "https://securovix.com",
+    "personal": "https://cyber-hub.uk"
+  },
+  "summary": "IT Support and Cloud Analyst with a strong foundation in cybersecurity, networking, and data analytics, supported by hands on experience and industry recognized certifications. With an MSc in Cyber Security, I bring a security first mindset to every environment, across incident response, threat hunting, vulnerability assessment, and ethical hacking. In parallel, my experience in data analysis and software development lets me translate technical insights into actionable business outcomes.",
+  "topSkills": [
+    "Cybersecurity",
+    "Machine Learning",
+    "Cloud (AWS / Azure)",
+    "Python",
+    "R",
+    "Power BI",
+    "SIEM & Threat Hunting",
+    "ETL & Data Engineering",
+    "Active Directory",
+    "Incident Response"
+  ],
+  "certifications": [
+    "Microsoft AZ 900",
+    "CCNA",
+    "CompTIA Security+",
+    "CompTIA Network+",
+    "Microsoft Cybersecurity Analyst Professional",
+    "GIAC Reverse Engineering Malware (GREM)",
+    "Cybersecurity Tools and Technologies",
+    "Data Security"
+  ],
+  "education": [
+    {
+      "school": "University of Gloucestershire",
+      "degree": "MSc, Cyber Security",
+      "period": "Sep 2023 / Sep 2024"
+    },
+    {
+      "school": "University of Gloucestershire",
+      "degree": "MSc, Cyber / Electronic Operations and Warfare",
+      "period": ""
+    },
+    {
+      "school": "Chhattisgarh Swami Vivekanand Technical University (CSVTU)",
+      "degree": "B.Tech, Information Technology",
+      "period": "2016 / 2020"
+    }
+  ]
+}
