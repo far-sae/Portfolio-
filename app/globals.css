@@ -9,16 +9,16 @@
 
   html,
   body {
-    background: #06070b;
-    color: #e7e9ee;
+    background: #000000;
+    color: #ededf2;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   body {
     background-image:
-      radial-gradient(1200px 700px at 85% -10%, rgba(124, 92, 255, 0.12), transparent 60%),
-      radial-gradient(900px 500px at -10% 30%, rgba(34, 211, 238, 0.07), transparent 60%);
+      radial-gradient(1200px 700px at 85% -10%, rgba(124, 92, 255, 0.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(34, 211, 238, 0.05), transparent 60%);
     background-attachment: fixed;
   }
 
@@ -120,7 +120,7 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0c12;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
   background: #20232e;

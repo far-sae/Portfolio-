@@ -12,6 +12,7 @@ import { BuiltList } from './BuiltList';
 import { TechStackMatrix } from './TechStackMatrix';
 import { FlowDiagram } from './FlowDiagram';
 import { RepoCard } from './RepoCard';
+import { MediaGallery } from './MediaGallery';
 
 type Project = {
   slug: string;
@@ -33,6 +34,7 @@ type Project = {
   highlights: string[];
   outcomes: string[];
   accent: string;
+  media?: any[];
 };
 
 const SECTIONS = [
@@ -160,14 +162,18 @@ export function ProjectDetail({ project }: { project: Project }) {
             ))}
           </motion.div>
 
-          {/* Real GitHub repo preview card */}
+          {/* Media gallery: GitHub OG + terminal replay + code snippet */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="mt-16"
           >
-            <RepoCard repo={project.repo} accent={project.accent} />
+            {project.media && project.media.length > 0 ? (
+              <MediaGallery media={project.media as any} accent={project.accent} />
+            ) : (
+              <RepoCard repo={project.repo} accent={project.accent} />
+            )}
           </motion.div>
         </motion.div>
       </section>

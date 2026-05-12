@@ -5,6 +5,7 @@ import { Skills } from '@/components/Skills';
 import { Achievements } from '@/components/Achievements';
 import { Experience } from '@/components/Experience';
 import { Projects } from '@/components/Projects';
+import { LiveSites } from '@/components/LiveSites';
 import { Contact, Footer } from '@/components/Contact';
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Achievements />
       <Experience />
       <Projects />
+      <LiveSites />
       <Contact />
       <Footer />
     </main>
