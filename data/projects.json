@@ -7,13 +7,46 @@
       "url": "https://github.com/far-sae/Aegisscan",
       "tagline": "All in one AI correlated cybersecurity scanner",
       "category": "Cybersecurity",
-      "stack": ["JavaScript", "Node.js", "AI Correlation", "Security"],
-      "summary": "Multi layer security scanner covering web apps, APIs, networks and configurations, fused with intelligent AI correlation so signal beats noise.",
+      "duration": "Solo build, ongoing",
+      "stack": ["JavaScript", "Node.js", "LLM", "Security Scanners"],
+      "summary": "A multi layer security scanner covering web apps, APIs, networks and configurations, fused with intelligent AI correlation so signal beats noise.",
+      "longSummary": [
+        "AegisScan is the tool I wish I had when I first started running pentests. Most teams stitch together five separate scanners and then spend the first hour of every engagement copy pasting findings between tabs. AegisScan runs all of them in a single pass and lets a language model do the boring correlation work.",
+        "The flagship feature is the correlation engine. When a port scan, a configuration audit, and a web application scanner all flag the same host, AegisScan clusters them into a single attack story with severity, evidence, and a remediation hint. Analysts triage one ranked feed instead of five disjoint reports.",
+        "It was built to be useful in both modes a working SOC actually needs. Quick external assessment for a new client, and deep recurring audit for an existing one."
+      ],
       "problem": "Security teams drown in scanner output. Five tools produce five disjoint reports, and the actual exploit chain hides between them. Triaging that manually wastes the first hour of every incident.",
       "approach": "AegisScan runs web, API, network, and configuration scanners in one pass, then pipes their findings into an LLM backed correlation layer that clusters related signals into a single attack story. Each finding lands with severity, evidence, and a remediation hint.",
+      "built": [
+        { "title": "Scanner orchestrator", "desc": "Single entry point that fans a target out to web, API, network and config scanners in parallel and normalises their output." },
+        { "title": "Correlation engine", "desc": "LLM backed clustering that groups related findings across tools into a single ranked incident with evidence chain." },
+        { "title": "Severity scoring", "desc": "Combines CVSS where available with corroboration count to score each cluster, not each raw finding." },
+        { "title": "Remediation hints", "desc": "Each cluster ships with a context aware fix recommendation generated from the evidence." },
+        { "title": "Audit mode", "desc": "Recurring scan profile with diffing so analysts see what is new, what is gone, and what regressed since the last run." }
+      ],
+      "techStack": [
+        { "name": "Node.js", "role": "Orchestrator runtime", "why": "Fast IO bound concurrency for fanning scanners in parallel" },
+        { "name": "JavaScript", "role": "Adapter layer", "why": "Thin wrappers around external scanners and parsers" },
+        { "name": "LLM API", "role": "Correlation reasoning", "why": "Cross tool clustering and evidence summarisation" },
+        { "name": "Open source scanners", "role": "Detection layer", "why": "Re uses battle tested tools rather than reinventing them" },
+        { "name": "JSON Schema", "role": "Finding normalisation", "why": "Common shape so the correlator works on any source" }
+      ],
+      "flow": [
+        { "step": "Target", "desc": "URL, IP range or config file" },
+        { "step": "Fan out", "desc": "Scanners run in parallel" },
+        { "step": "Normalise", "desc": "Findings reshaped to common JSON" },
+        { "step": "Correlate", "desc": "LLM clusters related signals" },
+        { "step": "Rank", "desc": "Severity, corroboration, exploitability" },
+        { "step": "Report", "desc": "One feed with remediation" }
+      ],
+      "learnings": [
+        "LLM correlation is most valuable when the model never sees raw evidence first. Normalise, then summarise, then cluster.",
+        "Severity from any single tool is noise. Severity from agreement across tools is signal.",
+        "Auditors care about diff between runs more than the absolute state."
+      ],
       "highlights": [
-        "Multi layer scanning: web app, API, network, configuration",
-        "AI correlation engine that groups related findings into one incident",
+        "Multi layer scanning across web, API, network, configuration",
+        "AI correlation engine groups findings into single incidents",
         "Severity scoring and remediation guidance per cluster",
         "Built for both quick assessments and deep audits"
       ],
@@ -31,13 +64,46 @@
       "url": "https://github.com/far-sae/Real-time-threat-detection",
       "tagline": "ML driven multi cloud SOC pipeline",
       "category": "Cybersecurity",
-      "stack": ["Python", "Machine Learning", "AWS", "Azure", "SIEM"],
+      "duration": "MSc dissertation extension",
+      "stack": ["Python", "scikit learn", "AWS", "Azure", "Streaming"],
       "summary": "A production grade detection system that streams events from AWS and Azure into ML models to flag threats in real time across both clouds.",
+      "longSummary": [
+        "When I dug into how most SOCs handle multi cloud, the answer was depressing. Two tabs. AWS in one, Azure in the other. Attackers laugh at that boundary because they pivot across it. This project was about deleting that boundary.",
+        "It ingests CloudTrail and Azure Monitor events, runs them through a feature pipeline I built for security telemetry, then scores each event with a hybrid anomaly plus classification model. Both clouds land in one queue with one consistent severity scale.",
+        "I treated SOC analyst experience as the design constraint. The model output had to be one ranked queue, not two. Each alert had to include the raw event, the model confidence, and the source cloud, so an analyst could pivot in seconds."
+      ],
       "problem": "Most SOC tooling treats AWS and Azure as separate worlds. Attackers don't. They pivot. We needed a single pipeline that ingested both clouds and learned what normal looks like.",
       "approach": "Built a streaming ingest from CloudTrail and Azure Monitor into a feature pipeline, trained anomaly and classification models on labelled events, and exposed alerts through a unified API so SOC analysts see one queue, not two.",
+      "built": [
+        { "title": "Unified ingestion", "desc": "Pulls CloudTrail and Azure Monitor through one consistent schema." },
+        { "title": "Feature pipeline", "desc": "Stateless transforms producing identity, action and asset features for each event." },
+        { "title": "Hybrid model", "desc": "Anomaly detector for novelty, classifier for known patterns, ensembled into one score." },
+        { "title": "Unified alert queue", "desc": "Both clouds, one severity, one ranked feed for the analyst." },
+        { "title": "Labelled training pipeline", "desc": "Continual retraining as analysts confirm or reject alerts." }
+      ],
+      "techStack": [
+        { "name": "Python", "role": "Pipeline + models", "why": "Mature ML and streaming ecosystem" },
+        { "name": "scikit learn", "role": "Classification + anomaly", "why": "Solid baseline, easy to ensemble, easy to ship" },
+        { "name": "AWS CloudTrail", "role": "AWS event source", "why": "Canonical audit telemetry for AWS accounts" },
+        { "name": "Azure Monitor", "role": "Azure event source", "why": "Equivalent audit surface for Azure subscriptions" },
+        { "name": "FastAPI", "role": "Alert API", "why": "Low overhead async surface for SOC integrations" }
+      ],
+      "flow": [
+        { "step": "Cloud logs", "desc": "CloudTrail + Azure Monitor" },
+        { "step": "Normalise", "desc": "Unified event schema" },
+        { "step": "Feature pipeline", "desc": "Identity, action, asset" },
+        { "step": "Score", "desc": "Anomaly + classifier ensemble" },
+        { "step": "Alert", "desc": "Unified queue, ranked" },
+        { "step": "Feedback", "desc": "Analyst labels retrain models" }
+      ],
+      "learnings": [
+        "Multi cloud is a schema problem before it is an ML problem.",
+        "Pure anomaly detection in security telemetry is loud. Mix it with classification to keep it sane.",
+        "Analyst feedback is the most valuable label source. Capture it as a first class signal."
+      ],
       "highlights": [
         "Unified AWS and Azure event ingestion",
-        "Trained anomaly and classification models on labelled security events",
+        "Anomaly + classification ensemble on labelled events",
         "Real time alerting with severity and source cloud tagging",
         "Designed for SOC analyst workflows, not just dashboards"
       ],
@@ -55,10 +121,45 @@
       "url": "https://github.com/far-sae/AI-security-analyst",
       "tagline": "Multi agent SOC assistant powered by Gemini",
       "category": "AI · Cybersecurity",
+      "duration": "Solo build, in production at Securovix",
       "stack": ["Python", "FastAPI", "Google Gemini", "Async", "Multi Agent"],
       "summary": "A multi agent cybersecurity system that automates log analysis, anomaly detection, threat intel lookup, response recommendations, and incident report generation.",
+      "longSummary": [
+        "A junior SOC analyst spends most of their day on the boring 80%. Tail a log. Search for an indicator. Look up an IP on a threat intel provider. Write the same report for the fifth time today. The work scales linearly with alert volume and burnout follows close behind.",
+        "AI Security Analyst splits that workload across specialised agents. A log parser, an anomaly detector, a threat intel agent, a responder, and a reporter. Each one has a narrow scope and a small tool surface. An orchestrator decides which agent gets which sub task and how the output gets stitched back together.",
+        "FastAPI exposes the system as a real time API. A batch CLI runs the same pipeline over historical logs so analysts can re sweep past data with new context. The output is always an analyst ready report, never raw model text."
+      ],
       "problem": "A junior analyst spends 80% of their day on the boring 80%: correlating logs, looking up IOCs, writing the same report. The work scales linearly with alert volume, and burnout follows.",
-      "approach": "Built specialised agents (log parser, anomaly detector, threat intel, responder, reporter) coordinated via an orchestrator. Each agent has a narrow scope and a tool surface. FastAPI exposes the system as an API. A CLI batches it across thousands of logs.",
+      "approach": "Built specialised agents coordinated by an orchestrator. Each agent has a narrow scope and a tool surface. FastAPI exposes the system as a real time API. A CLI batches it across thousands of historical logs.",
+      "built": [
+        { "title": "Log parser agent", "desc": "Structured extraction across heterogeneous log formats with timestamp and identity normalisation." },
+        { "title": "Anomaly detection agent", "desc": "Statistical and learned baselines per source. Flags events outside expected behaviour." },
+        { "title": "Threat intel agent", "desc": "Queries multiple intel providers for IOCs and enriches events with reputation and context." },
+        { "title": "Response agent", "desc": "Recommends containment actions referencing the org runbook, not just generic advice." },
+        { "title": "Report agent", "desc": "Drafts the incident report with timeline, evidence, and recommended actions." },
+        { "title": "FastAPI surface", "desc": "Async API endpoints for real time SOC integration." },
+        { "title": "Batch CLI", "desc": "Process historical logs at scale, same pipeline, same output shape." }
+      ],
+      "techStack": [
+        { "name": "Python", "role": "Agent runtime", "why": "Best language for agent orchestration and ML tooling" },
+        { "name": "Google Gemini", "role": "Reasoning model", "why": "Strong long context for log analysis and report drafting" },
+        { "name": "FastAPI", "role": "API layer", "why": "Async, typed, ships in production quickly" },
+        { "name": "asyncio", "role": "Concurrency", "why": "Parallel agent fan out without thread overhead" },
+        { "name": "Pydantic", "role": "Schema validation", "why": "Strict structured output between agents" }
+      ],
+      "flow": [
+        { "step": "Alert", "desc": "Raw event lands" },
+        { "step": "Parse", "desc": "Log parser agent normalises" },
+        { "step": "Enrich", "desc": "Threat intel agent attaches context" },
+        { "step": "Score", "desc": "Anomaly agent rates novelty" },
+        { "step": "Respond", "desc": "Response agent recommends action" },
+        { "step": "Report", "desc": "Report agent drafts the write up" }
+      ],
+      "learnings": [
+        "Narrow agents beat one giant agent. Scope each one to a tool surface and they get reliable.",
+        "Structured output between agents is non negotiable. Free form text becomes silent failure mode.",
+        "Report generation is where the time savings actually land. Analysts hate writing them."
+      ],
       "highlights": [
         "Specialised agents for log analysis, anomaly detection, threat intel, response, reporting",
         "Async FastAPI deployment for real time queries",
@@ -79,15 +180,48 @@
       "url": "https://github.com/far-sae/Autonomus",
       "tagline": "Detect, remediate and prove cloud compliance autonomously",
       "category": "Cloud Security",
+      "duration": "Securovix client engagement",
       "stack": ["Python", "AWS", "Azure", "Policy as Code", "Compliance"],
       "summary": "A production grade platform that autonomously detects compliance drift across cloud environments, remediates it, and produces audit ready evidence.",
+      "longSummary": [
+        "Most compliance programmes I have walked into ship spreadsheets. Engineering teams ship infrastructure. The gap between what the policy says and what the cloud actually looks like is exactly where audits fail and where attackers live.",
+        "Autonomus closes that gap continuously. It evaluates live cloud state against a policy as code rule set, classifies each drift by safe to fix versus needs human, executes the safe fixes itself, and records every action in an immutable audit log that satisfies the standard.",
+        "I built it to be useful to the compliance team and the engineering team at the same time. Compliance sees one dashboard that says current state is green. Engineering sees the same dashboard with the receipts of what was changed and why."
+      ],
       "problem": "Compliance teams ship spreadsheets. Engineering teams ship infrastructure. The gap between what the policy says and what the cloud actually looks like is where audits fail.",
-      "approach": "Continuously scans cloud accounts against policy as code rules, auto remediates safe deltas like open S3 buckets, dangling IAM, public security groups, and bundles every action into an immutable audit trail that satisfies the standard.",
+      "approach": "Continuously scans cloud accounts against policy as code rules, auto remediates safe deltas like open S3 buckets, dangling IAM, public security groups, and bundles every action into an immutable audit trail.",
+      "built": [
+        { "title": "Policy as code engine", "desc": "Rules written in a declarative format, versioned in git, evaluated continuously." },
+        { "title": "Cloud state scanner", "desc": "Pulls AWS and Azure resource state in batches, normalises into a common shape." },
+        { "title": "Drift classifier", "desc": "Categorises each policy violation as auto fix, propose fix, or escalate." },
+        { "title": "Remediation runner", "desc": "Executes pre approved fixes with rollback. Never touches resources outside the allow list." },
+        { "title": "Immutable audit trail", "desc": "Every detection and fix is recorded with full context, signed, and exportable to auditors." }
+      ],
+      "techStack": [
+        { "name": "Python", "role": "Engine + adapters", "why": "Best cloud SDK ecosystem for AWS and Azure" },
+        { "name": "AWS SDK (boto3)", "role": "AWS surface", "why": "Resource state read and remediation write" },
+        { "name": "Azure SDK", "role": "Azure surface", "why": "Same role for Azure subscriptions" },
+        { "name": "Policy as Code", "role": "Rule engine", "why": "Declarative rules versioned with infrastructure" },
+        { "name": "JSON Lines", "role": "Audit log format", "why": "Append only, streamable, easy to ship to SIEM" }
+      ],
+      "flow": [
+        { "step": "Scan", "desc": "Pull live cloud state" },
+        { "step": "Evaluate", "desc": "Run policy as code rules" },
+        { "step": "Classify", "desc": "Auto, propose, or escalate" },
+        { "step": "Remediate", "desc": "Execute safe fixes" },
+        { "step": "Audit", "desc": "Record every action immutably" },
+        { "step": "Report", "desc": "Green dashboard with receipts" }
+      ],
+      "learnings": [
+        "Auto remediation is only acceptable if the allow list is paranoid by default.",
+        "Compliance and engineering want the same data, just from opposite ends. Build the dashboard for both.",
+        "Auditors love structured audit trails more than they love clever detections."
+      ],
       "highlights": [
         "Policy as code compliance scanning across AWS and Azure",
         "Safe by default auto remediation with explicit allow list",
         "Immutable audit trail of every detection and fix",
-        "Designed to satisfy real audit frameworks, not just produce alerts"
+        "Designed to satisfy real audit frameworks"
       ],
       "outcomes": [
         "Closes the gap between written policy and actual cloud state",
@@ -103,14 +237,47 @@
       "url": "https://github.com/far-sae/Automated-ETL-Pipeline-for-Financial-Analytics",
       "tagline": "Production ETL across fifteen plus financial data sources",
       "category": "Data Engineering",
+      "duration": "Built at Secure Tech Insight",
       "stack": ["Python", "SQL", "Orchestration", "Validation"],
       "summary": "A production ready ETL pipeline for financial analytics with fifteen plus data sources, automated validation, transformation, and orchestration.",
+      "longSummary": [
+        "Finance teams ship under deadline. By month end the reporting tower of Excel macros, vendor exports and copy paste joins always cracks. I rebuilt that pipeline as something the team could trust on the worst day of the month.",
+        "Each of the fifteen plus sources is a plug in adapter with its own retry, auth, and rate limit story. Transforms are idempotent and tested. Loads are idempotent and safe to re run after a partial failure. Validation gates between every stage stop bad source data from poisoning downstream reports.",
+        "It cut reporting time from hours to minutes and lifted refresh reliability by 85%. More importantly the finance team stopped firefighting and started analysing."
+      ],
       "problem": "Finance teams stitched data from fifteen vendors with brittle Excel macros. Errors compounded by month end and reporting accuracy slipped.",
       "approach": "Built a modular pipeline. Each source as a plug in adapter, each transform as a tested step, each load as an idempotent write. Validation gates between every stage stop bad data from poisoning downstream reports.",
+      "built": [
+        { "title": "Source adapter framework", "desc": "Pluggable adapters for each vendor with auth, retry and rate limit baked in." },
+        { "title": "Idempotent transforms", "desc": "Pure functions over typed inputs, each tested in isolation." },
+        { "title": "Validation gates", "desc": "Schema and business rule checks between every stage." },
+        { "title": "Idempotent loads", "desc": "Safe to re run on partial failure without producing duplicates." },
+        { "title": "Orchestration", "desc": "Retry, alerting, and lineage tracking across the whole DAG." }
+      ],
+      "techStack": [
+        { "name": "Python", "role": "Pipeline runtime", "why": "Ecosystem for data wrangling and connectors" },
+        { "name": "SQL", "role": "Warehouse layer", "why": "Where the cleaned data ultimately lives and queries run" },
+        { "name": "pandas", "role": "Transform engine", "why": "Strong typed transforms with test coverage" },
+        { "name": "pytest", "role": "Validation framework", "why": "Each transform and adapter gets a unit test" },
+        { "name": "Orchestration", "role": "DAG runner", "why": "Retry, alerting, lineage, scheduling" }
+      ],
+      "flow": [
+        { "step": "Sources", "desc": "Fifteen plus financial vendors" },
+        { "step": "Extract", "desc": "Adapter per source with retries" },
+        { "step": "Validate", "desc": "Schema and rule checks" },
+        { "step": "Transform", "desc": "Idempotent typed transforms" },
+        { "step": "Validate", "desc": "Output schema check" },
+        { "step": "Load", "desc": "Idempotent warehouse write" }
+      ],
+      "learnings": [
+        "Validation gates between stages save you from invisible bad data more than retries do.",
+        "Idempotency in transforms and loads is what makes re runs after a failure non destructive.",
+        "Finance trusts the pipeline only when reruns produce the same numbers."
+      ],
       "highlights": [
         "Fifteen plus financial data sources unified under one ingestion layer",
         "Validation gates between extract, transform, load",
-        "Idempotent loads, safe to re run on partial failure",
+        "Idempotent loads safe to re run on partial failure",
         "Orchestration with retry, alerting, and lineage"
       ],
       "outcomes": [
@@ -127,10 +294,42 @@
       "url": "https://github.com/far-sae/Interactive-Power-BI-Executive-Dashboard",
       "tagline": "C suite KPIs with predictive analytics",
       "category": "Analytics",
+      "duration": "Reviewed weekly by senior leadership",
       "stack": ["Power BI", "Python", "DAX", "Forecasting"],
       "summary": "Enterprise grade BI dashboard giving executives real time visibility into KPIs, emerging trends, and predictive analytics.",
+      "longSummary": [
+        "Executives never asked for more dashboards. They asked for one screen that told them what was about to break. So that is what I built.",
+        "Every KPI tile drills into an explanation, not just a number. Predictive analytics surface this is going to miss target before quarter end, not after. Anomaly highlights flag the thing the leadership team should look at this week.",
+        "The design constraint was the weekly leadership review. Whatever shows up on this dashboard has to answer the next question that gets asked. Forecasts, drivers, deltas, and the one chart that matters most for this Tuesday."
+      ],
       "problem": "Executives don't want twelve dashboards. They want one screen that tells them what's about to break.",
       "approach": "Layered forecasting and anomaly highlights directly into the executive view. KPI tiles drill into trend explanations, not just numbers. Predictive models surface this is going to miss target before quarter end, not after.",
+      "built": [
+        { "title": "Single executive surface", "desc": "Revenue, operations, customer health on one page tuned for weekly review." },
+        { "title": "Predictive KPI tiles", "desc": "Forecast layered onto every primary KPI with confidence band." },
+        { "title": "Drillthrough explanations", "desc": "Each tile expands into the driver chart and the related sub metric." },
+        { "title": "Anomaly highlights", "desc": "Surfaces the chart that is misbehaving this week, automatically." },
+        { "title": "Tuesday cut", "desc": "Refresh and snapshot timed to land before the Monday evening prep." }
+      ],
+      "techStack": [
+        { "name": "Power BI", "role": "Visualisation layer", "why": "Standard enterprise BI surface, drives leadership cadence" },
+        { "name": "DAX", "role": "Measure language", "why": "Custom KPI logic and time intelligence" },
+        { "name": "Python", "role": "Forecasting + anomaly", "why": "Models that DAX cannot express cleanly" },
+        { "name": "SQL", "role": "Source queries", "why": "Warehouse facing query layer underneath visuals" }
+      ],
+      "flow": [
+        { "step": "Warehouse", "desc": "Source data" },
+        { "step": "Model layer", "desc": "Star schema" },
+        { "step": "Forecasting", "desc": "Python forecasts written back" },
+        { "step": "DAX measures", "desc": "Time intelligence + KPIs" },
+        { "step": "Visuals", "desc": "Executive page with drillthroughs" },
+        { "step": "Snapshot", "desc": "Monday morning refresh" }
+      ],
+      "learnings": [
+        "Executives read forecasts before they read facts. Build for forward looking attention.",
+        "Drillthroughs save the dashboard from death by tile.",
+        "Refresh timing matters as much as visual design."
+      ],
       "highlights": [
         "Single executive surface across revenue, operations, customer health",
         "Predictive analytics layered onto KPI tiles",
@@ -151,10 +350,43 @@
       "url": "https://github.com/far-sae/Machine-Learning-Churn-Prediction-Model",
       "tagline": "Ensemble model and CRM retention triggers",
       "category": "Machine Learning",
-      "stack": ["Python", "scikit learn", "Ensemble Models", "Feature Engineering"],
+      "duration": "Production deployment, integrated with CRM",
+      "stack": ["Python", "scikit learn", "Ensemble Models", "CRM"],
       "summary": "Production ML system predicting customer churn with automated retention campaign triggering. Ensemble modelling, deep feature engineering, CRM integration.",
+      "longSummary": [
+        "Marketing knew customers were churning. They did not know which ones, when, or why. By the time the dashboard caught it, the customer was already gone.",
+        "I engineered behaviour, usage, and support features, trained an ensemble of Random Forest and Gradient Boosting, and exposed scores via an API. The bit that actually shifted the business was wiring the high risk segment directly into CRM retention triggers. Prediction became action.",
+        "It improved retention interventions by 27%. More importantly, it gave the team a falsifiable hypothesis to test each cycle. Either the predicted at risk segment churns less when intervened on, or the model needs work."
+      ],
       "problem": "Marketing knew customers were churning. They just didn't know which ones, when, or why. By the time the dashboard showed it, the customer was gone.",
       "approach": "Engineered behaviour, usage, and support features, trained an ensemble of Random Forest and Gradient Boosting, exposed scores via API, and wired the high risk segment directly into CRM retention triggers, so prediction became action.",
+      "built": [
+        { "title": "Feature engineering", "desc": "Behaviour, usage, and support signals over multiple windows." },
+        { "title": "Ensemble model", "desc": "Random Forest plus Gradient Boosting, calibrated probabilities." },
+        { "title": "Scoring API", "desc": "Daily batch + real time scoring with versioned model artefacts." },
+        { "title": "CRM trigger integration", "desc": "High risk scores fire retention campaigns automatically." },
+        { "title": "Drift monitoring", "desc": "Feature and label drift dashboards with retraining triggers." }
+      ],
+      "techStack": [
+        { "name": "Python", "role": "Training + serving", "why": "Standard ML stack" },
+        { "name": "scikit learn", "role": "Models", "why": "Ensemble training, calibration, evaluation" },
+        { "name": "pandas", "role": "Feature engineering", "why": "Windowed aggregations across user history" },
+        { "name": "CRM API", "role": "Action surface", "why": "Where predictions actually drive outreach" },
+        { "name": "MLflow style tracking", "role": "Experiment management", "why": "Version models, features, datasets together" }
+      ],
+      "flow": [
+        { "step": "Events", "desc": "User behaviour + support tickets" },
+        { "step": "Features", "desc": "Windowed aggregations" },
+        { "step": "Score", "desc": "Ensemble model" },
+        { "step": "Calibrate", "desc": "Probability calibration" },
+        { "step": "Trigger", "desc": "High risk sent to CRM" },
+        { "step": "Outreach", "desc": "Retention campaign fires" }
+      ],
+      "learnings": [
+        "Calibration matters more than raw AUC when the score drives spend.",
+        "An ML model that never fires an action is a dashboard nobody opens.",
+        "Drift monitoring is the production half of the job people skip."
+      ],
       "highlights": [
         "Ensemble of Random Forest and Gradient Boosting",
         "Behaviour, usage, and support signal feature engineering",
@@ -175,18 +407,51 @@
       "url": "https://github.com/far-sae/Smart-IT-Support-Automation-System",
       "tagline": "Seventy percent plus ticket auto resolution",
       "category": "Automation",
-      "stack": ["Python", "LLMs", "Ticketing Integration"],
+      "duration": "Built from real L1 ticket workload",
+      "stack": ["Python", "LLMs", "AD", "O365", "Intune"],
       "summary": "Production ready IT support automation that auto resolves IT tickets with a 70% plus resolution rate.",
+      "longSummary": [
+        "I spent a year as the IT support technician at SecureTech Insight. By the end of month two I could write the resolution to most tickets in my sleep. Password resets, mailbox permissions, VPN problems, printer drivers. Same flow every time.",
+        "So I automated it. The system classifies inbound tickets, matches them against a runbook library, and executes safe remediations directly against AD, O365 and the device management APIs. Tickets the system is not confident on get routed to a human, but with the diagnostic context already collected.",
+        "It hit 70% plus auto resolution. The non obvious win was on the remaining 30%. Those tickets land with the analyst already half done, because the diagnostics ran first."
+      ],
       "problem": "L1 IT tickets are repetitive: password resets, VPN, mailbox permissions, printer drivers. Every minute of human time on those is a minute not spent on real incidents.",
       "approach": "Classifies inbound tickets, matches against a runbook library, and executes safe remediations against AD, O365, and device management APIs. Tickets the system isn't confident on get routed to a human with full diagnostic context attached.",
+      "built": [
+        { "title": "Ticket classifier", "desc": "Tags inbound tickets with category and confidence." },
+        { "title": "Runbook library", "desc": "Versioned remediation scripts mapped to ticket categories." },
+        { "title": "Safe execution surface", "desc": "AD, O365, Intune actions with allow list and rollback." },
+        { "title": "Human handoff", "desc": "Low confidence tickets routed to analysts with diagnostics pre run." },
+        { "title": "Analytics", "desc": "Resolution rate, MTTR, top failing categories." }
+      ],
+      "techStack": [
+        { "name": "Python", "role": "Orchestrator", "why": "Glue between classifier, runbooks, and integrations" },
+        { "name": "LLM", "role": "Classification + parsing", "why": "Free text ticket understanding" },
+        { "name": "Active Directory", "role": "Identity surface", "why": "User accounts, group policy, password resets" },
+        { "name": "Office 365 API", "role": "Productivity surface", "why": "Mailbox, permissions, license, distribution lists" },
+        { "name": "Intune", "role": "Device surface", "why": "Device management and software deployment" }
+      ],
+      "flow": [
+        { "step": "Inbound", "desc": "Ticket from ServiceNow or Jira" },
+        { "step": "Classify", "desc": "LLM tags category + confidence" },
+        { "step": "Diagnose", "desc": "Pre run checks for the category" },
+        { "step": "Decide", "desc": "Auto fix or escalate" },
+        { "step": "Remediate", "desc": "Safe action against AD / O365 / Intune" },
+        { "step": "Close + log", "desc": "Ticket updated with audit trail" }
+      ],
+      "learnings": [
+        "Auto resolution is a confidence problem before it is a capability problem.",
+        "Pre run diagnostics make the escalated tickets faster for humans too.",
+        "L1 work follows a power law. Automate the head, route the tail."
+      ],
       "highlights": [
         "Inbound ticket classification with confidence scoring",
         "Runbook driven safe auto remediation",
         "Human handoff includes pre collected diagnostics",
-        "Built around real L1 and L2 categories, not synthetic ones"
+        "Built around real L1 and L2 categories"
       ],
       "outcomes": [
-        "Seventy percent plus ticket auto resolution",
+        "70% plus ticket auto resolution",
         "Faster MTTR on the remaining human handled tickets",
         "Frees senior IT for engineering work"
       ],
@@ -199,10 +464,41 @@
       "url": "https://github.com/far-sae/Network_Intrusion_Detection",
       "tagline": "ML based intrusion detection on network flows",
       "category": "Cybersecurity",
-      "stack": ["Python", "Machine Learning", "Network Security"],
+      "duration": "Research project, productionised",
+      "stack": ["Python", "scikit learn", "NetFlow", "PCAP"],
       "summary": "Machine learning network intrusion detection system trained on labelled flow data to spot intrusions in real traffic.",
+      "longSummary": [
+        "Signature based IDS misses anything novel. Pure anomaly detection over fires. The trick is to learn what flow behaviour normally looks like and only alert when the deviation matters operationally.",
+        "I feature engineered network flow records, trained classifiers on labelled intrusion data, and tuned thresholds against false positive cost, not just precision. The model lives next to traditional signature engines, not instead of them.",
+        "The result is a hybrid detection layer that catches novel patterns the signatures miss without burying the analyst in noise."
+      ],
       "problem": "Signature based IDS misses anything novel. Pure anomaly detection over fires. You need a model that learns flow behaviour without melting on benign traffic.",
       "approach": "Feature engineered network flow records, trained classifiers on labelled intrusion data, and tuned thresholds against false positive cost, not just precision.",
+      "built": [
+        { "title": "Flow feature pipeline", "desc": "Per flow features for protocol, volume, timing, and asymmetry." },
+        { "title": "Classifier ensemble", "desc": "Trained on labelled intrusion datasets with class rebalancing." },
+        { "title": "Threshold tuning", "desc": "Threshold chosen against analyst time cost, not raw precision." },
+        { "title": "Hybrid mode", "desc": "Sits next to signature IDS, complements rather than replaces." }
+      ],
+      "techStack": [
+        { "name": "Python", "role": "Pipeline + models", "why": "ML and packet tooling ecosystem" },
+        { "name": "scikit learn", "role": "Classifiers", "why": "Reliable supervised baselines" },
+        { "name": "NetFlow / PCAP", "role": "Input data", "why": "Industry standard network telemetry" },
+        { "name": "pandas", "role": "Feature engineering", "why": "Per flow windowed aggregations" }
+      ],
+      "flow": [
+        { "step": "Capture", "desc": "NetFlow or PCAP" },
+        { "step": "Flow features", "desc": "Per flow aggregations" },
+        { "step": "Classify", "desc": "Ensemble model" },
+        { "step": "Threshold", "desc": "Tuned against FP cost" },
+        { "step": "Alert", "desc": "Routes to SOC queue" },
+        { "step": "Feedback", "desc": "Confirmations refine threshold" }
+      ],
+      "learnings": [
+        "Per flow features beat per packet features for ML detection.",
+        "Threshold choice is a product decision, not a metric decision.",
+        "Hybrid signature plus ML beats either alone."
+      ],
       "highlights": [
         "Flow level feature engineering",
         "Supervised classifier trained on labelled attacks",
@@ -223,10 +519,41 @@
       "url": "https://github.com/far-sae/cyber-vault-new",
       "tagline": "Secure gateway for digital assets",
       "category": "Web · Fintech",
-      "stack": ["JavaScript", "Web", "Crypto APIs"],
+      "duration": "Front end product build",
+      "stack": ["JavaScript", "React", "Web", "Crypto APIs"],
       "summary": "Secure interface to manage, track, and trade cryptocurrencies. Designed for both first time and experienced users.",
+      "longSummary": [
+        "Most crypto interfaces are either traders' cockpits or onboarding wizards. There is no clean middle that respects both. Cyber Vault tries to be that middle.",
+        "The home view promotes the right information first. Balance, recent activity, market snapshot. Power features like advanced orders, custody options, and security settings are progressively disclosed.",
+        "Security cues are deliberately visible. Confirmation steps and key handling never get hidden behind shortcuts. The goal is trust, not novelty."
+      ],
       "problem": "Most crypto interfaces are either traders' cockpits or onboarding wizards. There's no clean middle that respects both.",
       "approach": "Built a layered UI. A low cognitive load entry surface that promotes the right info first, with progressive disclosure for power features. Security cues like key handling and confirmation steps are visible without being noisy.",
+      "built": [
+        { "title": "Layered home view", "desc": "Balance, activity, market in priority order for first time users." },
+        { "title": "Progressive disclosure", "desc": "Advanced orders and custody options revealed when needed." },
+        { "title": "Visible security cues", "desc": "Confirmation steps and key indicators always on screen." },
+        { "title": "Portfolio tracking", "desc": "Holdings, P&L, and historical chart per asset." },
+        { "title": "Responsive UI", "desc": "Same flow scales from mobile to large desktop." }
+      ],
+      "techStack": [
+        { "name": "JavaScript", "role": "Front end runtime", "why": "Browser native" },
+        { "name": "React", "role": "Component framework", "why": "Composable UI for a trading surface" },
+        { "name": "Crypto market APIs", "role": "Data layer", "why": "Real time price + portfolio data" },
+        { "name": "Web Crypto APIs", "role": "Local security", "why": "Browser native key handling primitives" }
+      ],
+      "flow": [
+        { "step": "Land", "desc": "Balance + activity first" },
+        { "step": "Inspect", "desc": "Drill into asset" },
+        { "step": "Reveal", "desc": "Power options progressively" },
+        { "step": "Confirm", "desc": "Security cues always visible" },
+        { "step": "Execute", "desc": "Trade or transfer with audit" }
+      ],
+      "learnings": [
+        "Progressive disclosure is harder to design than feature flags suggest.",
+        "Security cues either feel native or feel like a popup. Make them native.",
+        "Beginners and traders disagree on defaults, not capabilities."
+      ],
       "highlights": [
         "Progressive disclosure UI. Beginner default, power user on demand",
         "Portfolio tracking, transaction view, market data",
