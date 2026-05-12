@@ -101,6 +101,7 @@ function ProjectRow({ project, index }: { project: any; index: number }) {
   const rotY = useTransform(sx, [-0.5, 0.5], [-2.5, 2.5]);
   const rotX = useTransform(sy, [-0.5, 0.5], [1.5, -1.5]);
   const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [hover, setHover] = useState(false);
 
   const onMove = (e: React.MouseEvent) => {
     const r = ref.current?.getBoundingClientRect();
@@ -126,7 +127,9 @@ function ProjectRow({ project, index }: { project: any; index: number }) {
       onMouseLeave={() => {
         mx.set(0);
         my.set(0);
+        setHover(false);
       }}
+      onMouseEnter={() => setHover(true)}
     >
       <Link
         href={`/projects/${project.slug}`}
@@ -135,6 +138,42 @@ function ProjectRow({ project, index }: { project: any; index: number }) {
         data-cursor="case study"
         className="group relative grid grid-cols-12 items-center gap-4 overflow-hidden border-b border-line py-7 transition-colors hover:bg-surface/40"
       >
+        {/* Floating preview thumbnail */}
+        <AnimatePresence>
+          {hover && (
+            <motion.div
+              key="thumb"
+              initial={{ opacity: 0, y: 12, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 12, scale: 0.92 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="pointer-events-none absolute z-20 hidden h-44 w-72 overflow-hidden rounded-xl border border-line bg-bg shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] lg:block"
+              style={{
+                left: Math.min(pos.x + 24, 800),
+                top: Math.max(pos.y - 90, -40)
+              }}
+            >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-1 blur-xl"
+                style={{ background: project.accent, opacity: 0.3 }}
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`https://opengraph.githubassets.com/1/far-sae/${project.repo}`}
+                alt={`${project.name} preview`}
+                className="relative h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
+                <span className="mono rounded bg-bg/80 px-1.5 py-0.5 text-[9px] uppercase tracking-[0.18em] text-muted backdrop-blur">
+                  github.com / {project.repo}
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* spotlight */}
         <div
           aria-hidden

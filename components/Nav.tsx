@@ -5,9 +5,10 @@ import Link from 'next/link';
 
 const items = [
   { href: '#about', label: 'About', n: '02' },
-  { href: '#experience', label: 'Trajectory', n: '03' },
-  { href: '#projects', label: 'Work', n: '04' },
-  { href: '#contact', label: 'Contact', n: '05' }
+  { href: '#skills', label: 'Stack', n: '03' },
+  { href: '#experience', label: 'Career', n: '04' },
+  { href: '#projects', label: 'Work', n: '05' },
+  { href: '#contact', label: 'Contact', n: '06' }
 ];
 
 export function Nav() {

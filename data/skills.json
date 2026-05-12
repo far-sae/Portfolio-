@@ -1,0 +1,136 @@
+{
+  "groups": [
+    {
+      "label": "Languages",
+      "items": [
+        { "name": "Python", "slug": "python", "color": "3776AB", "level": "Daily" },
+        { "name": "TypeScript", "slug": "typescript", "color": "3178C6", "level": "Daily" },
+        { "name": "JavaScript", "slug": "javascript", "color": "F7DF1E", "level": "Daily" },
+        { "name": "SQL", "slug": "postgresql", "color": "4169E1", "level": "Daily" },
+        { "name": "Bash", "slug": "gnubash", "color": "4EAA25", "level": "Daily" },
+        { "name": "R", "slug": "r", "color": "276DC3", "level": "Working" },
+        { "name": "Solidity", "slug": "solidity", "color": "363636", "level": "Working" }
+      ]
+    },
+    {
+      "label": "Cloud & Infra",
+      "items": [
+        { "name": "AWS", "slug": "amazonwebservices", "color": "FF9900", "level": "Daily" },
+        { "name": "Azure", "slug": "microsoftazure", "color": "0078D4", "level": "Daily" },
+        { "name": "Docker", "slug": "docker", "color": "2496ED", "level": "Daily" },
+        { "name": "Linux", "slug": "linux", "color": "FCC624", "level": "Daily" },
+        { "name": "GitHub Actions", "slug": "githubactions", "color": "2088FF", "level": "Daily" },
+        { "name": "Nginx", "slug": "nginx", "color": "009639", "level": "Working" }
+      ]
+    },
+    {
+      "label": "Security",
+      "items": [
+        { "name": "Wireshark", "slug": "wireshark", "color": "1679A7", "level": "Daily" },
+        { "name": "Splunk", "slug": "splunk", "color": "000000", "level": "Daily" },
+        { "name": "Burp Suite", "slug": "burpsuite", "color": "FF6633", "level": "Working" },
+        { "name": "Metasploit", "slug": "metasploit", "color": "2596CD", "level": "Working" },
+        { "name": "Kali", "slug": "kalilinux", "color": "557C94", "level": "Daily" }
+      ]
+    },
+    {
+      "label": "Data & ML",
+      "items": [
+        { "name": "pandas", "slug": "pandas", "color": "150458", "level": "Daily" },
+        { "name": "NumPy", "slug": "numpy", "color": "013243", "level": "Daily" },
+        { "name": "scikit learn", "slug": "scikitlearn", "color": "F7931E", "level": "Daily" },
+        { "name": "TensorFlow", "slug": "tensorflow", "color": "FF6F00", "level": "Working" },
+        { "name": "Power BI", "slug": "powerbi", "color": "F2C811", "level": "Daily" },
+        { "name": "Jupyter", "slug": "jupyter", "color": "F37626", "level": "Daily" }
+      ]
+    },
+    {
+      "label": "Web & Backend",
+      "items": [
+        { "name": "Next.js", "slug": "nextdotjs", "color": "FFFFFF", "level": "Daily" },
+        { "name": "React", "slug": "react", "color": "61DAFB", "level": "Daily" },
+        { "name": "Node.js", "slug": "nodedotjs", "color": "5FA04E", "level": "Daily" },
+        { "name": "FastAPI", "slug": "fastapi", "color": "009688", "level": "Daily" },
+        { "name": "Tailwind", "slug": "tailwindcss", "color": "06B6D4", "level": "Daily" },
+        { "name": "MongoDB", "slug": "mongodb", "color": "47A248", "level": "Working" }
+      ]
+    },
+    {
+      "label": "Ops & Productivity",
+      "items": [
+        { "name": "Active Directory", "slug": "microsoft", "color": "5E5E5E", "level": "Daily" },
+        { "name": "Office 365", "slug": "microsoft365", "color": "EB3C00", "level": "Daily" },
+        { "name": "Intune", "slug": "microsoftintune", "color": "0078D4", "level": "Daily" },
+        { "name": "ServiceNow", "slug": "servicenow", "color": "62D84E", "level": "Daily" },
+        { "name": "Jira", "slug": "jira", "color": "0052CC", "level": "Daily" },
+        { "name": "n8n", "slug": "n8n", "color": "EA4B71", "level": "Daily" }
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "name": "Microsoft AZ 900",
+      "title": "Azure Fundamentals",
+      "issuer": "Microsoft",
+      "slug": "microsoftazure",
+      "color": "0078D4",
+      "year": "2024"
+    },
+    {
+      "name": "CCNA",
+      "title": "Cisco Certified Network Associate",
+      "issuer": "Cisco",
+      "slug": "cisco",
+      "color": "1BA0D7",
+      "year": "2024"
+    },
+    {
+      "name": "CompTIA Security+",
+      "title": "Security+ ce",
+      "issuer": "CompTIA",
+      "slug": "comptia",
+      "color": "C8202F",
+      "year": "2024"
+    },
+    {
+      "name": "CompTIA Network+",
+      "title": "Network+",
+      "issuer": "CompTIA",
+      "slug": "comptia",
+      "color": "C8202F",
+      "year": "2024"
+    },
+    {
+      "name": "MS Cybersecurity Analyst",
+      "title": "Microsoft Cybersecurity Analyst Professional",
+      "issuer": "Microsoft",
+      "slug": "microsoft",
+      "color": "5E5E5E",
+      "year": "2025"
+    },
+    {
+      "name": "GIAC GREM",
+      "title": "Reverse Engineering Malware",
+      "issuer": "GIAC / SANS",
+      "slug": "sans",
+      "color": "EE3124",
+      "year": "2025"
+    },
+    {
+      "name": "Cybersecurity Tools",
+      "title": "Cybersecurity Tools and Technologies",
+      "issuer": "IBM",
+      "slug": "ibm",
+      "color": "1F70C1",
+      "year": "2024"
+    },
+    {
+      "name": "Data Security",
+      "title": "Data Security Specialist",
+      "issuer": "Coursera",
+      "slug": "coursera",
+      "color": "0056D2",
+      "year": "2024"
+    }
+  ]
+}

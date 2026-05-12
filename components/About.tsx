@@ -49,28 +49,38 @@ export function About() {
 
           <div className="hairline my-10" />
 
-          {/* certifications inline list */}
-          <div>
-            <div className="label mb-4">Certifications · 08</div>
-            <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {profile.certifications.map((c, i) => (
-                <motion.li
-                  key={c}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.04 }}
-                  className="group flex items-baseline gap-3 border-b border-line/70 py-2"
-                >
-                  <span className="mono text-[10px] text-muted/70">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="text-sm text-ink transition-colors group-hover:text-accent">
-                    {c}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
+          {/* pointer to skills and achievements below */}
+          <div className="grid grid-cols-2 gap-px border border-line bg-line">
+            <a
+              href="#skills"
+              data-cursor="stack"
+              className="group flex items-center justify-between bg-bg p-4 transition-colors hover:bg-surface/40"
+            >
+              <div>
+                <div className="label">Toolbelt</div>
+                <div className="mt-1 text-sm text-ink">35+ tools, daily use</div>
+              </div>
+              <span
+                className="mono text-[10px] uppercase tracking-[0.22em] text-muted group-hover:text-ink"
+              >
+                Scroll ↓
+              </span>
+            </a>
+            <a
+              href="#achievements"
+              data-cursor="certs"
+              className="group flex items-center justify-between bg-bg p-4 transition-colors hover:bg-surface/40"
+            >
+              <div>
+                <div className="label">Certifications</div>
+                <div className="mt-1 text-sm text-ink">8 earned, current</div>
+              </div>
+              <span
+                className="mono text-[10px] uppercase tracking-[0.22em] text-muted group-hover:text-ink"
+              >
+                Scroll ↓
+              </span>
+            </a>
           </div>
         </div>
 

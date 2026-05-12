@@ -11,6 +11,7 @@ import { ScrollStory } from './ScrollStory';
 import { BuiltList } from './BuiltList';
 import { TechStackMatrix } from './TechStackMatrix';
 import { FlowDiagram } from './FlowDiagram';
+import { RepoCard } from './RepoCard';
 
 type Project = {
   slug: string;
@@ -157,6 +158,16 @@ export function ProjectDetail({ project }: { project: Project }) {
                 {s}
               </motion.span>
             ))}
+          </motion.div>
+
+          {/* Real GitHub repo preview card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-16"
+          >
+            <RepoCard repo={project.repo} accent={project.accent} />
           </motion.div>
         </motion.div>
       </section>
