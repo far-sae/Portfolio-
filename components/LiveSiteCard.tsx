@@ -13,7 +13,7 @@ type Props = {
 };
 
 export function LiveSiteCard({ url, title, subtitle, accent, stack }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 180, damping: 18 });
