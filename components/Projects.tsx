@@ -355,12 +355,12 @@ function AllRepos() {
 }
 
 const LANG_COLORS: Record<string, string> = {
-  Python: '#3b82f6',
-  TypeScript: '#22d3ee',
-  JavaScript: '#facc15',
-  HTML: '#f87171',
-  Solidity: '#a3a3a3',
-  Other: '#6b7280'
+  Python: '#ffffff',
+  TypeScript: '#dcdcdc',
+  JavaScript: '#b0b0b0',
+  HTML: '#8a8a8a',
+  Solidity: '#6a6a6a',
+  Other: '#4a4a4a'
 };
 
 function RepoRow({

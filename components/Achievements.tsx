@@ -61,8 +61,7 @@ function AchievementCard({
       {/* corner accent */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-60"
-        style={{ background: `#${cert.color}` }}
+        className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-white opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-10"
       />
 
       {/* corner ticks */}
@@ -70,32 +69,25 @@ function AchievementCard({
         <span className="mono text-[10px] uppercase tracking-[0.22em] text-muted">
           /{String(index + 1).padStart(2, '0')}
         </span>
-        <CheckCircle2
-          className="h-4 w-4"
-          style={{ color: `#${cert.color}` }}
-        />
+        <CheckCircle2 className="h-4 w-4 text-ink" />
       </div>
 
       {/* logo + ribbon */}
       <div className="relative mt-8 flex items-center gap-4">
         <div className="relative">
-          {/* glow */}
+          {/* subtle glow */}
           <motion.div
             aria-hidden
-            className="absolute inset-0 rounded-full blur-2xl"
-            style={{ background: `#${cert.color}` }}
-            animate={{ opacity: [0.2, 0.45, 0.2] }}
+            className="absolute inset-0 rounded-full bg-white blur-2xl"
+            animate={{ opacity: [0.04, 0.12, 0.04] }}
             transition={{ duration: 4 + index * 0.2, repeat: Infinity }}
           />
-          <div
-            className="relative flex h-16 w-16 items-center justify-center rounded-2xl border"
-            style={{ borderColor: `#${cert.color}66`, background: '#0a0c12' }}
-          >
+          <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-line bg-black">
             <BrandLogo
               slug={cert.slug}
               name={cert.name}
-              color={cert.color}
               size={40}
+              monochrome
             />
           </div>
         </div>
@@ -115,10 +107,7 @@ function AchievementCard({
         <span className="mono text-[10px] uppercase tracking-[0.22em] text-muted">
           {cert.year}
         </span>
-        <span
-          className="mono text-[10px] uppercase tracking-[0.22em]"
-          style={{ color: `#${cert.color}` }}
-        >
+        <span className="mono text-[10px] uppercase tracking-[0.22em] text-ink">
           Verified
         </span>
       </div>

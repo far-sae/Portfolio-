@@ -9,14 +9,17 @@ const config: Config = {
     extend: {
       colors: {
         bg: '#000000',
-        surface: '#0a0a0c',
-        line: '#1c1c20',
-        ink: '#ededf2',
-        muted: '#7c8088',
-        accent: '#7c5cff',
-        accent2: '#22d3ee',
-        warn: '#f59e0b',
-        ok: '#34d399'
+        surface: '#0a0a0a',
+        line: '#1a1a1a',
+        dim: '#3a3a3a',
+        muted: '#8a8a8a',
+        ink: '#ededed',
+        white: '#ffffff',
+        accent: '#ffffff',
+        accent2: '#a8a8a8',
+        warn: '#a8a8a8',
+        ok: '#ededed',
+        err: '#ffffff'
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],

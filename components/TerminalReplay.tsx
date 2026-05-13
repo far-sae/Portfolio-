@@ -69,9 +69,9 @@ export function TerminalReplay({
       {/* chrome */}
       <div className="flex items-center justify-between border-b border-line bg-black px-3 py-2">
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#3a3a3a]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#5f5f5f]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#8a8a8a]" />
         </div>
         <div className="mono text-[10px] uppercase tracking-[0.22em] text-muted">
           {title}
@@ -93,22 +93,19 @@ export function TerminalReplay({
           const written = out[i]?.text ?? '';
           const isCurrent = i === idxRef.current && written.length > 0;
           const colorClass =
-            l.color === 'ok'
-              ? 'text-[#34d399]'
+            l.color === 'err'
+              ? 'text-white font-medium'
               : l.color === 'warn'
-                ? 'text-[#f59e0b]'
-                : l.color === 'err'
-                  ? 'text-[#ef4444]'
+                ? 'text-ink'
+                : l.color === 'ok'
+                  ? 'text-ink/80'
                   : l.color === 'muted'
                     ? 'text-muted'
                     : 'text-ink/90';
           return (
             <div key={i} className="flex items-baseline">
               {l.prompt && (
-                <span
-                  className="mr-2 shrink-0"
-                  style={{ color: l.color === 'in' ? accent : '#34d399' }}
-                >
+                <span className="mr-2 shrink-0 text-white">
                   {l.prompt}
                 </span>
               )}

@@ -113,7 +113,7 @@
         "Maps related findings into a single exploit narrative",
         "Reduces false positive fatigue through cross tool corroboration"
       ],
-      "accent": "#7c5cff",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",
@@ -297,7 +297,7 @@
         "Reduces dwell time by surfacing anomalies as they happen",
         "Provides labelled training pipeline for continued model tuning"
       ],
-      "accent": "#22d3ee",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",
@@ -484,7 +484,7 @@
         "Produces consistent incident reports without human drafting",
         "Frees senior analysts for actual threat hunting"
       ],
-      "accent": "#34d399",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",
@@ -659,7 +659,7 @@
         "Turns compliance from a quarterly fire drill into a continuous baseline",
         "Produces the evidence auditors actually want"
       ],
-      "accent": "#f59e0b",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",
@@ -837,7 +837,7 @@
         "85% improvement in data refresh reliability",
         "Validation catches bad source data before it hits dashboards"
       ],
-      "accent": "#22d3ee",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",
@@ -1010,7 +1010,7 @@
         "Shifted reporting from descriptive to predictive",
         "Anchored revenue, churn, and engagement conversations in one place"
       ],
-      "accent": "#7c5cff",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",
@@ -1184,7 +1184,7 @@
         "Identified at risk customer cohorts proactively",
         "Closed the loop from model output to outreach"
       ],
-      "accent": "#34d399",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",
@@ -1355,7 +1355,7 @@
         "Faster MTTR on the remaining human handled tickets",
         "Frees senior IT for engineering work"
       ],
-      "accent": "#f59e0b",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",
@@ -1524,7 +1524,7 @@
         "Operates on per flow features, not raw packets",
         "Tuned for analyst workload, not just F1"
       ],
-      "accent": "#22d3ee",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",
@@ -1681,7 +1681,7 @@
         "Surfaces security context where it matters",
         "Modern interface for portfolio and market view"
       ],
-      "accent": "#7c5cff",
+      "accent": "#ffffff",
       "media": [
         {
           "type": "github",

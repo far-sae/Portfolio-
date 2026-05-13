@@ -9,28 +9,28 @@ const SITES = [
     url: 'https://www.securovix.com',
     title: 'Securovix',
     subtitle: 'AI driven cyber security agency. The startup I co founded.',
-    accent: '#7c5cff',
+    accent: '#ffffff',
     stack: ['Next.js', 'TypeScript', 'AI']
   },
   {
     url: 'https://cyber-hub.uk',
     title: 'Cyber Hub',
     subtitle: 'Personal cyber security writing and resources.',
-    accent: '#22d3ee',
+    accent: '#ffffff',
     stack: ['Web', 'Content']
   },
   {
     url: 'https://power-share-pro.vercel.app',
     title: 'Power Share Pro',
     subtitle: 'Power sharing dashboard prototype.',
-    accent: '#f59e0b',
+    accent: '#ffffff',
     stack: ['TypeScript', 'Vercel']
   },
   {
     url: 'https://project-management-nu-beige.vercel.app',
     title: 'Project Management',
     subtitle: 'Lightweight project management workspace.',
-    accent: '#34d399',
+    accent: '#ffffff',
     stack: ['TypeScript', 'Vercel']
   }
 ];

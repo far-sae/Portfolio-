@@ -17,14 +17,14 @@
 
   body {
     background-image:
-      radial-gradient(1200px 700px at 85% -10%, rgba(124, 92, 255, 0.10), transparent 60%),
-      radial-gradient(900px 500px at -10% 30%, rgba(34, 211, 238, 0.05), transparent 60%);
+      radial-gradient(1400px 800px at 85% -10%, rgba(255, 255, 255, 0.05), transparent 60%),
+      radial-gradient(900px 500px at -10% 50%, rgba(255, 255, 255, 0.03), transparent 60%);
     background-attachment: fixed;
   }
 
   ::selection {
-    background: rgba(124, 92, 255, 0.35);
-    color: #fff;
+    background: #ffffff;
+    color: #000000;
   }
 
   body.has-custom-cursor,
@@ -71,7 +71,7 @@
   }
 
   .gradient-text {
-    background: linear-gradient(180deg, #ffffff 0%, #b6b1d8 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #6f6f6f 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

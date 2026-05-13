@@ -78,7 +78,8 @@ export function Skills() {
               aria-hidden
               className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
               style={{
-                background: `radial-gradient(closest-side at center, #${it.color}22, transparent 75%)`
+                background:
+                  'radial-gradient(closest-side at center, rgba(255,255,255,0.08), transparent 75%)'
               }}
             />
 
@@ -100,15 +101,14 @@ export function Skills() {
             >
               <div
                 aria-hidden
-                className="absolute h-16 w-16 rounded-full blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-60"
-                style={{ background: `#${it.color}` }}
+                className="absolute h-16 w-16 rounded-full bg-white opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-15"
               />
               <BrandLogo
                 slug={it.slug}
                 name={it.name}
-                color={it.color}
                 size={48}
-                className="relative drop-shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+                monochrome
+                className="relative drop-shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-110"
               />
             </motion.div>
 
@@ -141,8 +141,8 @@ export function Skills() {
                 <BrandLogo
                   slug={it.slug}
                   name={it.name}
-                  color={it.color}
                   size={28}
+                  monochrome
                 />
                 <span className="mono whitespace-nowrap text-xs uppercase tracking-[0.18em] text-muted">
                   {it.name}

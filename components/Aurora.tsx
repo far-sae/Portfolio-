@@ -47,10 +47,10 @@ export function Aurora({
     };
 
     const blobs: Blob[] = [
-      { x: w * 0.2, y: h * 0.3, vx: 0.15, vy: 0.1, r: 320, baseR: 320, color: 'rgba(124,92,255,0.55)' },
-      { x: w * 0.8, y: h * 0.4, vx: -0.12, vy: 0.18, r: 280, baseR: 280, color: 'rgba(34,211,238,0.45)' },
-      { x: w * 0.5, y: h * 0.8, vx: 0.2, vy: -0.14, r: 240, baseR: 240, color: 'rgba(245,158,11,0.30)' },
-      { x: w * 0.6, y: h * 0.2, vx: -0.18, vy: 0.08, r: 220, baseR: 220, color: 'rgba(52,211,153,0.30)' }
+      { x: w * 0.2, y: h * 0.3, vx: 0.15, vy: 0.1, r: 360, baseR: 360, color: 'rgba(255,255,255,0.18)' },
+      { x: w * 0.8, y: h * 0.4, vx: -0.12, vy: 0.18, r: 300, baseR: 300, color: 'rgba(255,255,255,0.12)' },
+      { x: w * 0.5, y: h * 0.8, vx: 0.2, vy: -0.14, r: 260, baseR: 260, color: 'rgba(255,255,255,0.08)' },
+      { x: w * 0.6, y: h * 0.2, vx: -0.18, vy: 0.08, r: 220, baseR: 220, color: 'rgba(255,255,255,0.06)' }
     ];
 
     setSize();
@@ -124,7 +124,7 @@ export function Aurora({
       ref={ref}
       aria-hidden
       className={`pointer-events-none absolute inset-0 ${className ?? ''}`}
-      style={{ filter: 'blur(40px) saturate(120%)', opacity: 0.65 }}
+      style={{ filter: 'blur(60px)', opacity: 0.5 }}
     />
   );
 }

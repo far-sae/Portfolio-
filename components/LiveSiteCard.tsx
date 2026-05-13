@@ -63,9 +63,9 @@ export function LiveSiteCard({ url, title, subtitle, accent, stack }: Props) {
         {/* window chrome */}
         <div className="flex items-center justify-between border-b border-line bg-black/80 px-3 py-2">
           <div className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#3a3a3a]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#5f5f5f]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#8a8a8a]" />
           </div>
           <div className="flex flex-1 items-center justify-center">
             <div className="mono inline-flex items-center gap-2 rounded-full border border-line bg-bg/60 px-3 py-0.5 text-[10px] uppercase tracking-[0.18em] text-muted">

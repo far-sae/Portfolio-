@@ -57,12 +57,12 @@ export function CustomCursor() {
           width: hover ? (label ? 88 : 44) : 28,
           height: hover ? (label ? 32 : 44) : 28,
           borderRadius: label ? 999 : 999,
-          backgroundColor: label ? 'rgba(124, 92, 255, 0.95)' : 'rgba(255,255,255,0)',
+          backgroundColor: label ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0)',
           borderColor: 'rgba(255,255,255,0.6)'
         }}
         transition={{ type: 'spring', stiffness: 350, damping: 30 }}
       >
-        <span className="select-none text-[10px] font-medium uppercase tracking-wider text-white">
+        <span className="select-none text-[10px] font-medium uppercase tracking-wider text-black">
           {label}
         </span>
         {!label && (

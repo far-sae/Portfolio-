@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const PALETTE: Record<string, string> = {
-  kw: '#c084fc', // keywords
-  fn: '#22d3ee', // functions
-  str: '#fbbf24', // strings
-  num: '#34d399', // numbers
-  cm: '#6b7280', // comments
-  op: '#94a3b8', // operators
-  txt: '#e5e7eb'
+  kw: '#ffffff', // keywords -- bright white
+  fn: '#ededed', // functions
+  str: '#bdbdbd', // strings -- mid gray
+  num: '#ffffff', // numbers -- bright
+  cm: '#5f5f5f', // comments -- dim
+  op: '#7c7c7c', // operators
+  txt: '#cfcfcf'
 };
 
 function tokenize(line: string, lang: string) {
@@ -90,9 +90,9 @@ export function CodeSnippet({
     <div className="relative overflow-hidden rounded-2xl border border-line bg-black/80">
       <div className="flex items-center justify-between border-b border-line bg-black px-3 py-2">
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#3a3a3a]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#5f5f5f]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#8a8a8a]" />
         </div>
         <div className="mono text-[10px] uppercase tracking-[0.22em] text-muted">
           {filename}
