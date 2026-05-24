@@ -1,0 +1,104 @@
+.card {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  color: var(--text);
+  text-decoration: none;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 400ms var(--ease-out-quart),
+              border-color 400ms var(--ease-out-quart),
+              box-shadow 400ms var(--ease-out-quart);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--mx) var(--my),
+    rgba(255, 123, 50, 0.18),
+    transparent 60%);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out-quart);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 123, 50, 0.4);
+  box-shadow: 0 30px 60px -20px rgba(255, 123, 50, 0.25);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+.name {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.pill {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.cta {
+  margin-top: auto;
+  padding-top: 16px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 200ms var(--ease-out-quart);
+}
+
+.card:hover .cta svg {
+  transform: translateX(4px);
+}
