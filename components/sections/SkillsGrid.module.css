@@ -1,0 +1,72 @@
+.section {
+  padding: 20vh 8vw;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+.heading {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 72px;
+}
+
+.group {
+  margin-bottom: 48px;
+}
+
+.group:last-child { margin-bottom: 0; }
+
+.groupLabel {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.pill {
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: var(--text);
+  transition: transform 300ms var(--ease-out-quart),
+              border-color 300ms var(--ease-out-quart);
+  animation-name: drift;
+  animation-duration: 8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.pill:hover {
+  transform: translateY(-10px) !important;
+  border-color: var(--orange);
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(-6px); }
+  50%      { transform: translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill { animation: none; }
+}
