@@ -1,5 +1,6 @@
 'use client';
 import { useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import VideoIntro from './VideoIntro';
 import GlassButton from '@/components/ui/GlassButton';
@@ -8,6 +9,11 @@ import ScrollIndicator from '@/components/ui/ScrollIndicator';
 import { useHeroAudio } from '@/components/hooks/useHeroAudio';
 import { useHeroIntro } from './useHeroIntro';
 import styles from './Hero.module.css';
+
+const CinematicLayer = dynamic(() => import('@/components/three/CinematicLayer'), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Hero() {
   const rootRef = useRef<HTMLElement | null>(null);
@@ -18,6 +24,8 @@ export default function Hero() {
   return (
     <section ref={rootRef} className={styles.hero} aria-label="Intro">
       <VideoIntro ref={videoRef} src="/hero.mp4" poster="/hero-poster.jpg" />
+
+      <CinematicLayer />
 
       <div className={styles.overlay} />
 
