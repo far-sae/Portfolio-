@@ -1,26 +1,7 @@
-import { Nav } from '@/components/Nav';
-import { Hero } from '@/components/Hero';
-import { About } from '@/components/About';
-import { Skills } from '@/components/Skills';
-import { Achievements } from '@/components/Achievements';
-import { Experience } from '@/components/Experience';
-import { Projects } from '@/components/Projects';
-import { LiveSites } from '@/components/LiveSites';
-import { Contact, Footer } from '@/components/Contact';
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <main className="relative">
-      <Nav />
-      <Hero />
-      <About />
-      <Skills />
-      <Achievements />
-      <Experience />
-      <Projects />
-      <LiveSites />
-      <Contact />
-      <Footer />
+    <main className="min-h-screen flex items-center justify-center bg-black text-white">
+      <p className="text-sm tracking-[0.3em] uppercase opacity-50">Scaffolding…</p>
     </main>
   );
 }

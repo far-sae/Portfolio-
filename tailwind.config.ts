@@ -1,47 +1,29 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}'
-  ],
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        bg: '#000000',
-        surface: '#0a0a0a',
-        line: '#1a1a1a',
-        dim: '#3a3a3a',
-        muted: '#8a8a8a',
-        ink: '#ededed',
-        white: '#ffffff',
-        accent: '#ffffff',
-        accent2: '#a8a8a8',
-        warn: '#a8a8a8',
-        ok: '#ededed',
-        err: '#ffffff'
+        macBar:    'rgba(15, 14, 22, 0.55)',
+        macWindow: '#1e1e2e',
+        vscBg:     '#1e1e1e',
+        vscSidebar:'#252526',
+        vscTabs:   '#2d2d30',
+        vscText:   '#cccccc',
+        vscMuted:  '#858585',
+        vscAccent: '#007acc',
+        dotRed:    '#ff5f57',
+        dotYellow: '#febc2e',
+        dotGreen:  '#28c840',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+        mono: ['var(--font-mono)', 'ui-monospace', 'Menlo', 'Consolas', 'monospace'],
+        sans: ['var(--font-sans)', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'sans-serif'],
       },
-      keyframes: {
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' }
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-8px)' }
-        }
-      },
-      animation: {
-        shimmer: 'shimmer 2.5s linear infinite',
-        float: 'float 6s ease-in-out infinite'
-      }
-    }
+    },
   },
-  plugins: []
+  plugins: [],
 };
 
 export default config;
