@@ -1,0 +1,38 @@
+.badge {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  color: var(--text);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 600ms var(--ease-out-quart);
+}
+
+.badge.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.badge:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 123, 50, 0.4);
+}
+
+.badge svg {
+  width: 14px;
+  height: 14px;
+}
