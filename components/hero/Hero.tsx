@@ -6,14 +6,17 @@ import GlassButton from '@/components/ui/GlassButton';
 import SoundBadge from '@/components/ui/SoundBadge';
 import ScrollIndicator from '@/components/ui/ScrollIndicator';
 import { useHeroAudio } from '@/components/hooks/useHeroAudio';
+import { useHeroIntro } from './useHeroIntro';
 import styles from './Hero.module.css';
 
 export default function Hero() {
+  const rootRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const { muted, playing, acknowledged, toggleMute, togglePlay } = useHeroAudio(videoRef);
+  useHeroIntro(rootRef);
 
   return (
-    <section className={styles.hero} aria-label="Intro">
+    <section ref={rootRef} className={styles.hero} aria-label="Intro">
       <VideoIntro ref={videoRef} src="/hero.mp4" poster="/hero-poster.jpg" />
 
       <div className={styles.overlay} />
