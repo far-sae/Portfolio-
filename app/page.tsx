@@ -1,7 +1,12 @@
+import Hero from '@/components/hero/Hero';
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-black text-white">
-      <p className="text-sm tracking-[0.3em] uppercase opacity-50">Scaffolding…</p>
+    <main>
+      <Hero />
+      <section id="about" style={{ minHeight: '100vh', padding: '20vh 8vw', color: 'white' }}>
+        About section placeholder
+      </section>
     </main>
   );
 }
