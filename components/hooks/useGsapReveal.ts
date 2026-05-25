@@ -19,9 +19,12 @@ type Options = {
   end?: string;
   selector?: string;
   /**
-   * When true (default), the animation re-fires on every scroll across
-   * the section boundaries: play on enter, reverse on leave, both
-   * directions.
+   * When true (default), the animation re-fires every time the section
+   * enters the viewport from either direction. Off-screen, elements are
+   * reset to the hidden state instantly (no visible reverse), so cards
+   * never look like they're flying off the page as you scroll past.
+   * When false, animation plays once on first entry and elements stay
+   * visible.
    */
   bidirectional?: boolean;
 };
@@ -75,7 +78,7 @@ export function useGsapReveal<T extends HTMLElement>({
         start,
         end,
         toggleActions: bidirectional
-          ? 'play reverse play reverse'
+          ? 'play reset play reset'
           : 'play none none none',
       },
     });
