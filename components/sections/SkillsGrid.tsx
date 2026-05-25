@@ -1,5 +1,4 @@
 'use client';
-import { useMemo } from 'react';
 import { useGsapReveal } from '@/components/hooks/useGsapReveal';
 import skills from '@/data/skills.json';
 import styles from './SkillsGrid.module.css';
@@ -7,21 +6,27 @@ import styles from './SkillsGrid.module.css';
 type Item = { name: string; slug: string; color: string; level: string };
 type Group = { label: string; items: Item[] };
 
+// Deterministic FNV-1a hash so server and client compute identical
+// drift timings — Math.random() during render breaks hydration.
+function hash(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function pillTiming(key: string): { animationDuration: string; animationDelay: string } {
+  const seed = hash(key);
+  const duration = 6 + ((seed % 401) / 100);
+  const delay = ((seed >>> 8) % 601) / 100;
+  return { animationDuration: `${duration}s`, animationDelay: `-${delay}s` };
+}
+
 export default function SkillsGrid() {
   const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.05 });
   const groups = skills.groups as unknown as Group[];
-
-  const pillDelays = useMemo(() => {
-    const map = new Map<string, string>();
-    for (const g of groups) {
-      for (const it of g.items) {
-        const duration = 6 + Math.random() * 4;
-        const delay = -Math.random() * 6;
-        map.set(`${g.label}:${it.slug}`, `${duration}s -${Math.abs(delay)}s`);
-      }
-    }
-    return map;
-  }, [groups]);
 
   return (
     <section ref={ref} id="skills" className={styles.section} aria-label="Skills">
@@ -31,18 +36,15 @@ export default function SkillsGrid() {
         <div key={g.label} className={styles.group} data-reveal>
           <p className={styles.groupLabel}>{g.label}</p>
           <div className={styles.grid}>
-            {g.items.map((it) => {
-              const [duration, delay] = (pillDelays.get(`${g.label}:${it.slug}`) ?? '8s 0s').split(' ');
-              return (
-                <span
-                  key={it.slug}
-                  className={styles.pill}
-                  style={{ animationDuration: duration, animationDelay: delay }}
-                >
-                  {it.name}
-                </span>
-              );
-            })}
+            {g.items.map((it) => (
+              <span
+                key={it.slug}
+                className={styles.pill}
+                style={pillTiming(`${g.label}:${it.slug}`)}
+              >
+                {it.name}
+              </span>
+            ))}
           </div>
         </div>
       ))}
