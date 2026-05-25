@@ -6,3 +6,8 @@ out
 *.log
 tsconfig.tsbuildinfo
 *.tsbuildinfo
+
+# Skills installed via `npx skills add` — local-only, not part of project source
+.agents/
+.hallmark/
+skills-lock.json
