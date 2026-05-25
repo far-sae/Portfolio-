@@ -1,6 +1,6 @@
-import { Github, Star, GitFork } from 'lucide-react';
+import type { CSSProperties } from 'react';
+import { Github, ArrowUpRight } from 'lucide-react';
 import profile from '@/data/profile.json';
-import Reveal from '@/components/motion/Reveal';
 import styles from './GitHubStats.module.css';
 
 const USERNAME = 'far-sae';
@@ -70,7 +70,7 @@ async function fetchRepos(): Promise<Repo[]> {
     return repos
       .filter((r) => !r.fork && !r.archived && r.name !== USERNAME)
       .sort((a, b) => b.stargazers_count - a.stargazers_count)
-      .slice(0, 6);
+      .slice(0, 5);
   } catch {
     return [];
   }
@@ -87,87 +87,88 @@ export default async function GitHubStats() {
 
   if (!user) {
     return (
-      <section id="github" className={styles.section} aria-label="GitHub activity">
-        <p className={styles.eyebrow}>Open source</p>
-        <h2 className={styles.heading}>Things I push.</h2>
+      <section id="github" className={styles.section} aria-label="GitHub">
         <div className={styles.fallback}>
           GitHub stats are temporarily unavailable. Visit my profile directly below.
         </div>
         <a className={styles.cta} href={profile.links.github} target="_blank" rel="noreferrer">
-          <Github />
-          @{USERNAME} on GitHub
+          <Github size={14} /> @{USERNAME} on GitHub <ArrowUpRight />
         </a>
       </section>
     );
   }
 
   const totalStars = repos.reduce((sum, r) => sum + r.stargazers_count, 0);
+  const years = yearsOnGitHub(user.created_at);
 
   return (
-    <section id="github" className={styles.section} aria-label="GitHub activity">
-      <p className={styles.eyebrow}>Open source</p>
-      <h2 className={styles.heading}>Things I push.</h2>
+    <section id="github" className={styles.section} aria-label="GitHub">
+      {/* Stat-Led hero: one giant number does the work. */}
+      <div className={styles.statHero}>
+        <div className={styles.figure}>
+          {user.public_repos}
+          <span>repos</span>
+        </div>
+        <div>
+          <p className={styles.qualifier}>
+            <strong>{user.public_repos} public repositories</strong> over {years} years on GitHub —
+            cybersecurity tooling, AI agents, data pipelines, and the occasional web build. Everything below
+            comes straight from the GitHub API at build time, no fabricated stars.
+          </p>
+          <a className={styles.cta} href={profile.links.github} target="_blank" rel="noreferrer">
+            <Github size={12} /> @{USERNAME} <ArrowUpRight />
+          </a>
+        </div>
+      </div>
 
-      <Reveal className={styles.statsRow} selector={`.${styles.stat}`} x={50} stagger={0.06}>
-        <div className={styles.stat}>
-          <div className={styles.statValue}>{user.public_repos}</div>
-          <div className={styles.statLabel}>Public repos</div>
+      {/* Supporting stats — tabular, no boxes. */}
+      <div className={styles.support}>
+        <div>
+          <span className={styles.supportFigure}>{user.followers}</span>
+          <span className={styles.supportLabel}>Followers</span>
         </div>
-        <div className={styles.stat}>
-          <div className={styles.statValue}>{user.followers}</div>
-          <div className={styles.statLabel}>Followers</div>
+        <div>
+          <span className={styles.supportFigure}>{totalStars}</span>
+          <span className={styles.supportLabel}>Stars on top 5</span>
         </div>
-        <div className={styles.stat}>
-          <div className={styles.statValue}>{totalStars}</div>
-          <div className={styles.statLabel}>Stars earned</div>
+        <div>
+          <span className={styles.supportFigure}>{years}y</span>
+          <span className={styles.supportLabel}>On GitHub</span>
         </div>
-        <div className={styles.stat}>
-          <div className={styles.statValue}>{yearsOnGitHub(user.created_at)}y</div>
-          <div className={styles.statLabel}>On GitHub</div>
-        </div>
-      </Reveal>
+      </div>
 
+      {/* Top repos as a dense list, no cards. */}
       {repos.length > 0 && (
-        <>
-          <p className={styles.reposLabel}>Most-starred recent repos</p>
-          <Reveal className={styles.repos} selector={`.${styles.repoCard}`} x={70} stagger={0.08}>
-            {repos.map((repo) => (
-              <a
-                key={repo.id}
-                href={repo.html_url}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.repoCard}
-              >
-                <h3 className={styles.repoName}>{repo.name}</h3>
-                <p className={styles.repoDesc}>{repo.description ?? 'No description.'}</p>
-                <div className={styles.repoMeta}>
-                  {repo.language && (
-                    <span>
-                      <span
-                        className={styles.langDot}
-                        style={{ background: LANG_COLORS[repo.language] ?? 'var(--orange)' }}
-                      />
-                      {repo.language}
-                    </span>
-                  )}
-                  <span>
-                    <Star size={12} /> {repo.stargazers_count}
-                  </span>
-                  <span>
-                    <GitFork size={12} /> {repo.forks_count}
-                  </span>
-                </div>
-              </a>
-            ))}
-          </Reveal>
-        </>
+        <div className={styles.repoSection}>
+          <div>
+            <h3 className={styles.repoLabel}>Top five.</h3>
+            <div className={styles.repoSub}>By star count.</div>
+          </div>
+          <ul className={styles.repoList}>
+            {repos.map((repo) => {
+              const brand = repo.language ? LANG_COLORS[repo.language] ?? '#ff7b32' : '#666';
+              return (
+                <li key={repo.id}>
+                  <a
+                    className={styles.repoItem}
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ '--repoBrand': brand } as CSSProperties}
+                  >
+                    <span className={styles.repoName}>{repo.name}</span>
+                    <p className={styles.repoDesc}>{repo.description ?? 'No description.'}</p>
+                    <div className={styles.repoMeta}>
+                      {repo.language && <span className={styles.repoLang}>{repo.language}</span>}
+                      <span>★ {repo.stargazers_count} · ⑂ {repo.forks_count}</span>
+                    </div>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       )}
-
-      <a className={styles.cta} href={profile.links.github} target="_blank" rel="noreferrer">
-        <Github />
-        @{USERNAME} on GitHub
-      </a>
     </section>
   );
 }

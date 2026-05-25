@@ -1,6 +1,6 @@
 'use client';
-import { MouseEvent } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import clsx from 'clsx';
 import styles from './ProjectCard.module.css';
 
 export type Project = {
@@ -12,31 +12,25 @@ export type Project = {
   stack: string[];
 };
 
-type Props = { project: Project };
+type Props = {
+  project: Project;
+  feature?: boolean;
+};
 
-export default function ProjectCard({ project }: Props) {
-  const onMove = (e: MouseEvent<HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    e.currentTarget.style.setProperty('--mx', `${x}%`);
-    e.currentTarget.style.setProperty('--my', `${y}%`);
-  };
-
+export default function ProjectCard({ project, feature = false }: Props) {
   return (
     <a
-      className={styles.card}
+      className={clsx(styles.card, feature && styles.feature)}
       href={project.url}
       target="_blank"
       rel="noreferrer"
-      onMouseMove={onMove}
     >
       <p className={styles.eyebrow}>{project.category}</p>
       <h3 className={styles.name}>{project.name}</h3>
       <p className={styles.tagline}>{project.tagline}</p>
       <div className={styles.stack}>
-        {project.stack.slice(0, 4).map((s) => (
-          <span key={s} className={styles.pill}>{s}</span>
+        {project.stack.slice(0, feature ? 5 : 4).map((s) => (
+          <span key={s}>{s}</span>
         ))}
       </div>
       <span className={styles.cta}>

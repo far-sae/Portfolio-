@@ -2,49 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hallmark · tokens · sans+serif pairing, 4-pt scale, named z, OKLCH-aligned dark */
 :root {
+  /* Surface */
   --bg: #1a1a1f;
   --bg-deep: #14141a;
-  --surface: rgba(255, 255, 255, 0.04);
-  --border: rgba(255, 255, 255, 0.08);
-  --text: #f0f0f2;
-  --muted: rgba(240, 240, 242, 0.62);
-  --orange: #ff7b32;
-  --blue: #6ab7ff;
 
+  /* Tinted surface stops — lift in 2% increments, never inline rgba() */
+  --surface-1: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.06);
+  --surface-3: rgba(255, 255, 255, 0.10);
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.16);
+
+  /* Ink */
+  --text: #f0f0f2;
+  --text-soft: rgba(240, 240, 242, 0.78);
+  --muted: rgba(240, 240, 242, 0.55);
+
+  /* Accents (anchor + supporting) */
+  --orange: #ff7b32;
+  --orange-soft: rgba(255, 123, 50, 0.16);
+  --orange-border: rgba(255, 123, 50, 0.32);
+  --blue: #6ab7ff;
+  --purple: #a78bfa;
+  --green: #34d399;
+  --pink: #fb7185;
+
+  /* Spacing — 4pt scale */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+
+  /* Z-scale (named, not arbitrary) */
+  --z-base: 1;
+  --z-overlay: 3;
+  --z-content: 4;
+  --z-controls: 5;
+  --z-grain: 100;
+
+  /* Motion */
   --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --dur-short: 200ms;
+  --dur-med: 400ms;
+  --dur-long: 800ms;
+
+  /* Type pairing */
+  --font-stack-display: var(--font-display), 'Times New Roman', serif;
+  --font-stack-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+  --font-stack-mono: var(--font-mono), ui-monospace, Menlo, Consolas, monospace;
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scroll-behavior: auto; }
+html { scroll-behavior: auto; overflow-x: clip; }
+body { overflow-x: clip; }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+  font-family: var(--font-stack-sans);
+  font-feature-settings: 'ss01' 1, 'cv11' 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Film-grain overlay — adds gentle texture so the dark surface
-   never reads as a flat void. Sits above content at very low
-   opacity with overlay blending, so it integrates with colors
-   rather than darkening them. */
+/* Film-grain overlay — texture, not decoration. */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 100;
-  opacity: 0.06;
+  z-index: var(--z-grain);
+  opacity: 0.05;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 ::selection { background: var(--orange); color: var(--bg); }
-
 ::-webkit-scrollbar { width: 0; height: 0; }
 
 @media (prefers-reduced-motion: reduce) {

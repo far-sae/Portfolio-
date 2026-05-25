@@ -1,6 +1,5 @@
-'use client';
 import { ArrowUpRight } from 'lucide-react';
-import { useGsapReveal } from '@/components/hooks/useGsapReveal';
+import clsx from 'clsx';
 import styles from './LiveProjects.module.css';
 
 type Site = {
@@ -13,59 +12,60 @@ const SITES: Site[] = [
   {
     name: 'Securovix',
     url: 'https://securovix.com',
-    tagline: 'AI-driven cybersecurity, automation, and digital growth — the company I co-founded and lead as CTO.',
+    tagline:
+      'AI-driven cybersecurity, automation, and digital growth — the company I co-founded and lead as CTO.',
   },
   {
     name: 'Cyber Hub',
     url: 'https://cyber-hub.uk',
-    tagline: 'My personal knowledge hub for cybersecurity research, write-ups, and tooling.',
+    tagline:
+      'My personal knowledge hub for cybersecurity research, write-ups, and tooling.',
   },
 ];
 
 export default function LiveProjects() {
-  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.12, x: 120 });
-
   return (
-    <section ref={ref} id="live" className={styles.section} aria-label="Live projects">
-      <p className={styles.eyebrow} data-reveal>Live in production</p>
-      <h2 className={styles.heading} data-reveal>Sites shipping right now.</h2>
-      <div className={styles.grid}>
-        {SITES.map((site) => {
-          const display = site.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-          return (
-            <a
-              key={site.url}
-              href={site.url}
-              target="_blank"
-              rel="noreferrer"
-              className={styles.card}
-              data-reveal
-            >
-              <div className={styles.preview}>
-                <iframe
-                  className={styles.frame}
-                  src={site.url}
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                  sandbox="allow-scripts allow-same-origin"
-                  title={`${site.name} preview`}
-                  aria-hidden
-                />
-                <div className={styles.previewVeil} />
-                <span className={styles.previewLabel}>Live</span>
-              </div>
-              <div className={styles.info}>
-                <h3 className={styles.name}>{site.name}</h3>
-                <p className={styles.tagline}>{site.tagline}</p>
-                <p className={styles.url}>{display}</p>
-                <span className={styles.cta}>
-                  Visit site <ArrowUpRight />
-                </span>
-              </div>
-            </a>
-          );
-        })}
-      </div>
+    <section id="live" className={styles.section} aria-label="Live sites">
+      <h2 className={styles.heading}>Two live, right now.</h2>
+
+      {SITES.map((site, i) => {
+        const display = site.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        const num = String(i + 1).padStart(2, '0');
+        return (
+          <div
+            key={site.url}
+            className={clsx(styles.diptych, i % 2 === 1 && styles.reverse)}
+          >
+            <div className={styles.preview}>
+              <iframe
+                className={styles.frame}
+                src={site.url}
+                loading="lazy"
+                referrerPolicy="no-referrer"
+                sandbox="allow-scripts allow-same-origin"
+                title={`${site.name} preview`}
+                aria-hidden
+              />
+              <span className={styles.liveTag}>Live</span>
+            </div>
+
+            <div className={styles.text}>
+              <p className={styles.indexLabel}>Site {num}</p>
+              <h3 className={styles.name}>{site.name}</h3>
+              <p className={styles.tagline}>{site.tagline}</p>
+              <p className={styles.url}>{display}</p>
+              <a
+                className={styles.visit}
+                href={site.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Visit site <ArrowUpRight />
+              </a>
+            </div>
+          </div>
+        );
+      })}
     </section>
   );
 }

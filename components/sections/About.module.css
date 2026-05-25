@@ -1,59 +1,101 @@
+/* Hallmark · macrostructure: Letter · genre: editorial · accent: orange */
+
 .section {
-  padding: 18vh 8vw 14vh;
-  max-width: 1200px;
+  padding: var(--space-4xl) 8vw var(--space-3xl);
+  max-width: 920px;
   margin: 0 auto;
-  text-align: center;
 }
 
-.eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 28px;
+.salutation {
+  font-family: var(--font-stack-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 var(--space-2xl);
+  max-width: 18ch;
 }
 
-.name {
-  font-size: clamp(3rem, 10vw, 9rem);
+.signature {
+  font-family: var(--font-stack-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 9vw, 7rem);
   line-height: 0.92;
-  letter-spacing: -0.04em;
-  font-weight: 300;
-  margin: 0 0 56px;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 0 0 var(--space-2xl);
 }
 
-.name span {
+.signature span {
   display: block;
 }
 
-.summary {
-  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
-  font-weight: 300;
-  line-height: 1.6;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  margin: 0 auto 48px;
-  max-width: 880px;
+.prose {
+  font-family: var(--font-stack-sans);
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: 1.7;
+  color: var(--text-soft);
+  max-width: 56ch;
+  margin: 0 0 var(--space-xl);
 }
 
-.chips {
+.prose strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.separator {
+  margin: var(--space-2xl) 0;
+  color: var(--muted);
+  letter-spacing: 0.6em;
+  font-size: 14px;
+  user-select: none;
+}
+
+.tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+  font-family: var(--font-stack-mono);
 }
 
-.chip {
-  padding: 10px 18px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  font-size: 13px;
-  letter-spacing: 0.05em;
+.tag {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: lowercase;
+}
+
+.tag + .tag::before {
+  content: '·  ';
+  margin-right: var(--space-2xs);
+}
+
+.signoff {
+  margin-top: var(--space-3xl);
+  font-family: var(--font-stack-sans);
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.signoff a {
   color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--orange-border);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color var(--dur-short) var(--ease-out-quart);
+}
+
+.signoff a:hover,
+.signoff a:focus-visible {
+  text-decoration-color: var(--orange);
 }
 
 @media (max-width: 768px) {
-  .section { padding: 14vh 6vw 10vh; }
-  .name { margin-bottom: 40px; }
-  .summary { margin-bottom: 36px; }
+  .section { padding: var(--space-3xl) 6vw var(--space-2xl); }
 }

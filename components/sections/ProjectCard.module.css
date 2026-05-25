@@ -1,67 +1,52 @@
+/* Hallmark · macrostructure-fragment: Bento cell · genre: editorial */
+
 .card {
-  --mx: 50%;
-  --my: 50%;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 32px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  border-radius: 18px;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
   color: var(--text);
   text-decoration: none;
   isolation: isolate;
   overflow: hidden;
-  transition: transform 400ms var(--ease-out-quart),
-              border-color 400ms var(--ease-out-quart),
-              box-shadow 400ms var(--ease-out-quart);
+  /* Single hover signal: border-color shift. No lift, no glow, no spotlight. */
+  transition: border-color var(--dur-med) var(--ease-out-quart),
+              background var(--dur-med) var(--ease-out-quart);
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(420px circle at var(--mx) var(--my),
-    rgba(255, 123, 50, 0.18),
-    transparent 60%);
-  opacity: 0;
-  transition: opacity 400ms var(--ease-out-quart);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 123, 50, 0.4);
-  box-shadow: 0 30px 60px -20px rgba(255, 123, 50, 0.25);
-}
-
-.card:hover::before {
-  opacity: 1;
+.card:hover,
+.card:focus-visible {
+  border-color: var(--orange-border);
+  background: var(--surface-2);
+  outline: none;
 }
 
 .eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.3em;
+  font-family: var(--font-stack-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
   margin: 0;
 }
 
 .name {
-  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
-  font-weight: 400;
+  font-family: var(--font-stack-display);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  line-height: 1.05;
   letter-spacing: -0.01em;
   margin: 0;
+  font-weight: 400;
 }
 
 .tagline {
   margin: 0;
-  color: var(--muted);
+  color: var(--text-soft);
   line-height: 1.55;
   font-size: 0.95rem;
 }
@@ -69,36 +54,58 @@
 .stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
+  gap: var(--space-xs);
+  margin-top: auto;
+  padding-top: var(--space-md);
+  font-family: var(--font-stack-mono);
 }
 
-.pill {
-  padding: 5px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.stack span {
   font-size: 11px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.stack span + span::before {
+  content: '·  ';
+  margin-right: var(--space-2xs);
   color: var(--muted);
 }
 
 .cta {
-  margin-top: auto;
-  padding-top: 16px;
-  font-size: 13px;
-  letter-spacing: 0.05em;
+  margin-top: var(--space-md);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--space-2xs);
+  white-space: nowrap;
 }
 
 .cta svg {
-  width: 14px;
-  height: 14px;
-  transition: transform 200ms var(--ease-out-quart);
+  width: 12px;
+  height: 12px;
+  transition: transform var(--dur-short) var(--ease-out-quart);
 }
 
-.card:hover .cta svg {
-  transform: translateX(4px);
+.card:hover .cta svg,
+.card:focus-visible .cta svg {
+  transform: translate(2px, -2px);
+}
+
+/* Feature variant: larger, prose-led, prominent display. */
+.feature {
+  padding: var(--space-xl);
+  background: linear-gradient(135deg, var(--surface-2), var(--surface-1));
+}
+
+.feature .name {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+}
+
+.feature .tagline {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  max-width: 50ch;
 }

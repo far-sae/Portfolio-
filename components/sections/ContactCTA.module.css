@@ -1,103 +1,94 @@
+/* Hallmark · macrostructure: Letter close · genre: editorial · accent: orange */
+
 .section {
-  position: relative;
-  padding: 28vh 8vw 16vh;
-  max-width: 1100px;
+  padding: var(--space-4xl) 8vw var(--space-3xl);
+  max-width: 820px;
   margin: 0 auto;
-  text-align: center;
-  overflow: hidden;
+  /* Left-biased, intimate. No orb, no glass, no decorative chrome. */
 }
 
-.orb {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60vw;
-  height: 60vw;
-  max-width: 800px;
-  max-height: 800px;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(255, 123, 50, 0.18) 0%, rgba(255, 123, 50, 0) 60%);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  filter: blur(8px);
-  z-index: 0;
-  will-change: transform;
+.signoff {
+  font-family: var(--font-stack-display);
+  font-style: italic;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 0 0 var(--space-xl);
+  max-width: 18ch;
 }
 
-.eyebrow {
-  position: relative;
-  z-index: 1;
-  font-size: 12px;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
+.prose {
+  font-size: clamp(1.05rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--text-soft);
+  max-width: 52ch;
+  margin: 0 0 var(--space-2xl);
+}
+
+.prose a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--orange-border);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color var(--dur-short) var(--ease-out-quart);
+}
+
+.prose a:hover,
+.prose a:focus-visible {
+  text-decoration-color: var(--orange);
+}
+
+.signature {
+  font-family: var(--font-stack-display);
+  font-style: italic;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: var(--text);
+  margin: 0 0 var(--space-2xl);
+}
+
+.signature span {
   color: var(--muted);
-  margin: 0 0 24px;
-}
-
-.headline {
-  position: relative;
-  z-index: 1;
-  font-size: clamp(2.5rem, 7vw, 6rem);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  margin: 0 0 56px;
-}
-
-.cta {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 32px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 123, 50, 0.5);
-  background: rgba(255, 123, 50, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--text);
-  font-size: 15px;
+  font-style: normal;
+  font-size: 0.55em;
   letter-spacing: 0.05em;
-  text-decoration: none;
-  transition: transform 200ms var(--ease-out-quart),
-              background 200ms var(--ease-out-quart);
+  display: block;
+  margin-top: var(--space-2xs);
 }
 
-.cta:hover {
-  transform: scale(1.04);
-  background: rgba(255, 123, 50, 0.15);
-}
-
-.socials {
-  position: relative;
-  z-index: 1;
-  margin-top: 56px;
+.row {
   display: flex;
-  justify-content: center;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  align-items: center;
+  font-family: var(--font-stack-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
 }
 
-.socials a {
+.row a {
+  color: var(--text);
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  transition: border-color 200ms var(--ease-out-quart),
-              transform 200ms var(--ease-out-quart);
+  gap: var(--space-2xs);
+  padding-bottom: var(--space-2xs);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-short) var(--ease-out-quart);
+  white-space: nowrap;
 }
 
-.socials a:hover {
+.row a:hover,
+.row a:focus-visible {
   border-color: var(--orange);
-  transform: translateY(-2px);
+  outline: none;
 }
 
-.socials svg {
-  width: 16px;
-  height: 16px;
+.row svg { width: 12px; height: 12px; }
+
+@media (max-width: 768px) {
+  .section { padding: var(--space-3xl) 6vw var(--space-2xl); }
 }

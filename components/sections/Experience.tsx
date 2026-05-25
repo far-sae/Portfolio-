@@ -1,16 +1,4 @@
-'use client';
 import type { CSSProperties } from 'react';
-import {
-  MapPin,
-  Shield,
-  Monitor,
-  BarChart3,
-  Cloud,
-  Landmark,
-  Briefcase,
-  type LucideIcon,
-} from 'lucide-react';
-import { useGsapReveal } from '@/components/hooks/useGsapReveal';
 import experience from '@/data/experience.json';
 import styles from './Experience.module.css';
 
@@ -23,75 +11,54 @@ type Entry = {
   highlights: string[];
 };
 
-const ACCENTS = ['#ff7b32', '#6ab7ff', '#a78bfa', '#34d399', '#fb7185'];
-
-const COMPANY_ICONS: Record<string, LucideIcon> = {
-  Securovix: Shield,
-  'SecureTech Insight': Monitor,
-  'Secure Tech Insight': BarChart3,
-  'Secure Tech': Cloud,
-  'Fidelity National Financial': Landmark,
-};
-
-const COMPANY_MARKS: Record<string, string> = {
-  Securovix: 'SV',
-  'SecureTech Insight': 'ST',
-  'Secure Tech Insight': 'ST',
-  'Secure Tech': 'ST',
-  'Fidelity National Financial': 'FNF',
-};
+const ACCENTS = ['var(--orange)', 'var(--blue)', 'var(--purple)', 'var(--green)', 'var(--pink)'];
 
 export default function Experience() {
-  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.1, x: 80 });
   const entries = experience as unknown as Entry[];
+  // Stage numbers count UP through time — oldest = 1.0, current = 5.0.
+  // experience.json is newest-first, so reverse for numbering then re-flip for display.
+  const total = entries.length;
 
   return (
-    <section ref={ref} id="experience" className={styles.section} aria-label="Experience">
-      <p className={styles.eyebrow} data-reveal>Experience</p>
-      <h2 className={styles.heading} data-reveal>Operational history.</h2>
-      <div className={styles.timeline}>
-        {entries.map((e, i) => {
-          const Icon = COMPANY_ICONS[e.company] ?? Briefcase;
-          const mark = COMPANY_MARKS[e.company] ?? e.company.slice(0, 2).toUpperCase();
+    <section id="experience" className={styles.section} aria-label="Career stages">
+      <h2 className={styles.heading}>How I got here.</h2>
+      <p className={styles.lede}>
+        Five stages, oldest to newest. Each one taught me what to keep and
+        what to leave in the drawer.
+      </p>
+
+      <div className={styles.stages}>
+        {entries.map((e, displayIndex) => {
+          // displayIndex 0 = newest; we want 5.0 → 1.0 going DOWN.
+          const stageNum = total - displayIndex;
           return (
             <article
               key={`${e.company}-${e.period}`}
-              className={styles.entry}
-              data-reveal
-              style={{ '--accent': ACCENTS[i % ACCENTS.length] } as CSSProperties}
+              className={styles.stage}
+              style={{ '--accent': ACCENTS[displayIndex % ACCENTS.length] } as CSSProperties}
             >
-              <span className={styles.dot} aria-hidden />
-              <div className={styles.logo} aria-hidden>
-                <div className={styles.logoIcon}>
-                  <Icon size={22} strokeWidth={1.6} />
-                </div>
-                <div className={styles.logoMark}>{mark}</div>
-              </div>
-              <div className={styles.body}>
-                <div className={styles.header}>
-                  <div className={styles.titleBlock}>
-                    <h3 className={styles.role}>{e.role}</h3>
-                    <p className={styles.company}>{e.company}</p>
-                  </div>
-                  <div className={styles.metaBlock}>
-                    <span className={styles.period}>{e.period}</span>
-                    <span className={styles.location}>
-                      <MapPin size={12} /> {e.location}
-                    </span>
-                  </div>
-                </div>
+              <header className={styles.rail}>
+                <div className={styles.stageNumber}>{stageNum.toFixed(1)}</div>
+                <div className={styles.stageLabel}>{e.tags[0] ?? 'Role'}</div>
+                <div className={styles.period}>{e.period}</div>
+                <div className={styles.location}>{e.location}</div>
+              </header>
 
-                <div className={styles.tags}>
-                  {e.tags.map((t) => (
-                    <span key={t} className={styles.tag}>{t}</span>
-                  ))}
-                </div>
+              <div className={styles.body}>
+                <h3 className={styles.role}>{e.role}</h3>
+                <p className={styles.company}>{e.company}</p>
 
                 <ul className={styles.highlights}>
                   {e.highlights.map((h, j) => (
                     <li key={j}>{h}</li>
                   ))}
                 </ul>
+
+                <div className={styles.tags} aria-label="Stack">
+                  {e.tags.map((t) => (
+                    <span key={t}>{t.toLowerCase()}</span>
+                  ))}
+                </div>
               </div>
             </article>
           );
