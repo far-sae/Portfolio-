@@ -10,10 +10,14 @@ export default function About() {
 
   return (
     <section ref={ref} id="about" className={styles.section} aria-label="About">
-      <p className={styles.eyebrow} data-reveal>About</p>
-      <h2 className={styles.headline} data-reveal>
+      <p className={styles.eyebrow} data-reveal>CYBERSECURITY · AI · CREATOR</p>
+      <h1 className={styles.name} data-reveal>
+        <span>FARAZ SAEED</span>
+        <span>KHWAJA</span>
+      </h1>
+      <p className={styles.summary} data-reveal>
         {profile.summary}
-      </h2>
+      </p>
       <div className={styles.chips} data-reveal>
         {ROLES.map((r) => (
           <span key={r} className={styles.chip}>{r}</span>

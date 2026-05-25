@@ -12,52 +12,9 @@
   inset: 0;
   z-index: 3;
   background:
-    linear-gradient(180deg, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0) 18%, rgba(5,5,5,0) 60%, rgba(5,5,5,0.7) 100%),
-    radial-gradient(ellipse at center, rgba(5,5,5,0) 40%, rgba(5,5,5,0.7) 100%);
+    linear-gradient(180deg, rgba(5,5,5,0.45) 0%, rgba(5,5,5,0) 18%, rgba(5,5,5,0) 60%, rgba(5,5,5,0.7) 100%),
+    radial-gradient(ellipse at center, rgba(5,5,5,0) 50%, rgba(5,5,5,0.6) 100%);
   pointer-events: none;
-}
-
-.content {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 8vw 18vh;
-  pointer-events: none;
-}
-
-.tagline {
-  font-size: 12px;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 28px;
-  opacity: 0;
-}
-
-.name {
-  font-size: clamp(4rem, 12vw, 12rem);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-  font-weight: 300;
-  margin: 0;
-}
-
-.name span {
-  display: block;
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-.subtitle {
-  margin: 32px 0 0;
-  max-width: 540px;
-  color: var(--muted);
-  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-  line-height: 1.6;
-  opacity: 0;
 }
 
 .controls {
@@ -71,6 +28,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tagline, .subtitle, .controls { opacity: 1 !important; }
-  .name span { opacity: 1 !important; transform: none !important; }
+  .controls { opacity: 1 !important; }
 }

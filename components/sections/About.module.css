@@ -1,5 +1,5 @@
 .section {
-  padding: 20vh 8vw;
+  padding: 18vh 8vw 14vh;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -9,16 +9,29 @@
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--muted);
-  margin: 0 0 32px;
+  margin: 0 0 28px;
 }
 
-.headline {
-  font-size: clamp(2rem, 4vw, 3.4rem);
+.name {
+  font-size: clamp(3rem, 10vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   font-weight: 300;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  margin: 0 0 56px;
+}
+
+.name span {
+  display: block;
+}
+
+.summary {
+  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: var(--text);
   margin: 0 0 48px;
-  max-width: 900px;
+  max-width: 880px;
 }
 
 .chips {
@@ -35,4 +48,10 @@
   font-size: 13px;
   letter-spacing: 0.05em;
   color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .section { padding: 14vh 6vw 10vh; }
+  .name { margin-bottom: 40px; }
+  .summary { margin-bottom: 36px; }
 }
