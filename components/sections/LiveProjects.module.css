@@ -2,6 +2,7 @@
   padding: 20vh 8vw;
   max-width: 1280px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .eyebrow {
@@ -24,6 +25,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 28px;
+  text-align: left;
 }
 
 .card {

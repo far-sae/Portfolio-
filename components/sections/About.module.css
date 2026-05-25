@@ -2,6 +2,7 @@
   padding: 18vh 8vw 14vh;
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .eyebrow {
@@ -30,13 +31,14 @@
   line-height: 1.6;
   letter-spacing: -0.01em;
   color: var(--text);
-  margin: 0 0 48px;
+  margin: 0 auto 48px;
   max-width: 880px;
 }
 
 .chips {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
 }
 

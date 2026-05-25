@@ -2,6 +2,7 @@
   padding: 20vh 8vw;
   max-width: 880px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .eyebrow {
@@ -19,6 +20,8 @@
   line-height: 1;
   margin: 0 0 72px;
 }
+
+.timeline { text-align: left; }
 
 .timeline {
   position: relative;
