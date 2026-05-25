@@ -60,21 +60,45 @@
   z-index: 2;
 }
 
-.badge {
+.logo {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--bg)));
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 90%, transparent),
+    color-mix(in srgb, var(--accent) 40%, var(--bg)));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 10px 24px -10px color-mix(in srgb, var(--accent) 70%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 300ms var(--ease-out-quart);
+}
+
+.entry:hover .logo {
+  transform: scale(1.04) rotate(-2deg);
+}
+
+.logoIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--accent) 60%, transparent);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.logoMark {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
 }
 
 .body {
@@ -204,7 +228,8 @@
   .timeline { padding-left: 24px; }
   .timeline::before { left: 15px; }
   .entry { flex-direction: column; gap: 16px; }
-  .badge { width: 48px; height: 48px; font-size: 16px; }
+  .logo { width: 56px; height: 56px; border-radius: 14px; }
+  .logoMark { font-size: 8px; }
   .dot { left: -10px; top: 18px; }
   .body { padding: 20px; }
   .header { flex-direction: column; }
