@@ -13,7 +13,7 @@ type Entry = {
 };
 
 export default function Experience() {
-  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.06 });
+  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.08, x: 60 });
   const entries = experience as unknown as Entry[];
 
   return (

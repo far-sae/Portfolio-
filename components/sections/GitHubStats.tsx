@@ -1,5 +1,6 @@
 import { Github, Star, GitFork } from 'lucide-react';
 import profile from '@/data/profile.json';
+import Reveal from '@/components/motion/Reveal';
 import styles from './GitHubStats.module.css';
 
 const USERNAME = 'far-sae';
@@ -107,7 +108,7 @@ export default async function GitHubStats() {
       <p className={styles.eyebrow}>Open source</p>
       <h2 className={styles.heading}>Things I push.</h2>
 
-      <div className={styles.statsRow}>
+      <Reveal className={styles.statsRow} selector={`.${styles.stat}`} x={50} stagger={0.06}>
         <div className={styles.stat}>
           <div className={styles.statValue}>{user.public_repos}</div>
           <div className={styles.statLabel}>Public repos</div>
@@ -124,12 +125,12 @@ export default async function GitHubStats() {
           <div className={styles.statValue}>{yearsOnGitHub(user.created_at)}y</div>
           <div className={styles.statLabel}>On GitHub</div>
         </div>
-      </div>
+      </Reveal>
 
       {repos.length > 0 && (
         <>
           <p className={styles.reposLabel}>Most-starred recent repos</p>
-          <div className={styles.repos}>
+          <Reveal className={styles.repos} selector={`.${styles.repoCard}`} x={70} stagger={0.08}>
             {repos.map((repo) => (
               <a
                 key={repo.id}
@@ -159,7 +160,7 @@ export default async function GitHubStats() {
                 </div>
               </a>
             ))}
-          </div>
+          </Reveal>
         </>
       )}
 

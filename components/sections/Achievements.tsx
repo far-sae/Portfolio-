@@ -13,7 +13,7 @@ type Achievement = {
 };
 
 export default function Achievements() {
-  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.05 });
+  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.05, x: 70 });
   const items = skills.achievements as unknown as Achievement[];
 
   return (

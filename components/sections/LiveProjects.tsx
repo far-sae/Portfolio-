@@ -23,7 +23,7 @@ const SITES: Site[] = [
 ];
 
 export default function LiveProjects() {
-  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.1 });
+  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.12, x: 120 });
 
   return (
     <section ref={ref} id="live" className={styles.section} aria-label="Live projects">

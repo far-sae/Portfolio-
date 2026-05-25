@@ -25,7 +25,7 @@ function pillTiming(key: string): { animationDuration: string; animationDelay: s
 }
 
 export default function SkillsGrid() {
-  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.05 });
+  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.08, x: 80 });
   const groups = skills.groups as unknown as Group[];
 
   return (

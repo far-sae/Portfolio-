@@ -5,7 +5,7 @@ import projects from '@/data/projects.json';
 import styles from './Projects.module.css';
 
 export default function Projects() {
-  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.08 });
+  const ref = useGsapReveal<HTMLElement>({ selector: '[data-reveal]', stagger: 0.08, x: 90 });
   const items = projects.featured as Project[];
 
   return (

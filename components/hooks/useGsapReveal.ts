@@ -6,20 +6,36 @@ import { useReducedMotion } from './useReducedMotion';
 
 type Options = {
   y?: number;
+  /**
+   * Alternating horizontal offset (px). When > 0, even-indexed targets
+   * enter from -x and odd-indexed from +x, producing the left/right
+   * cascade. 0 disables horizontal motion.
+   */
+  x?: number;
   delay?: number;
   stagger?: number;
   duration?: number;
   start?: string;
+  end?: string;
   selector?: string;
+  /**
+   * When true (default), the animation re-fires on every scroll across
+   * the section boundaries: play on enter, reverse on leave, both
+   * directions.
+   */
+  bidirectional?: boolean;
 };
 
 export function useGsapReveal<T extends HTMLElement>({
   y = 24,
+  x = 0,
   delay = 0,
   stagger = 0,
   duration = 0.8,
-  start = 'top 75%',
+  start = 'top 85%',
+  end = 'bottom 15%',
   selector,
+  bidirectional = true,
 }: Options = {}) {
   const ref = useRef<T | null>(null);
   const reduced = useReducedMotion();
@@ -37,14 +53,18 @@ export function useGsapReveal<T extends HTMLElement>({
     if (targets.length === 0) return;
 
     if (reduced) {
-      gsap.set(targets, { opacity: 1, y: 0 });
+      gsap.set(targets, { opacity: 1, x: 0, y: 0 });
       return;
     }
 
-    gsap.set(targets, { opacity: 0, y });
+    targets.forEach((t, i) => {
+      const xOffset = x === 0 ? 0 : i % 2 === 0 ? -x : x;
+      gsap.set(t, { opacity: 0, x: xOffset, y });
+    });
 
     const tween = gsap.to(targets, {
       opacity: 1,
+      x: 0,
       y: 0,
       duration,
       delay,
@@ -53,7 +73,10 @@ export function useGsapReveal<T extends HTMLElement>({
       scrollTrigger: {
         trigger: el,
         start,
-        once: true,
+        end,
+        toggleActions: bidirectional
+          ? 'play reverse play reverse'
+          : 'play none none none',
       },
     });
 
@@ -61,7 +84,7 @@ export function useGsapReveal<T extends HTMLElement>({
       tween.scrollTrigger?.kill();
       tween.kill();
     };
-  }, [y, delay, stagger, duration, start, selector, reduced]);
+  }, [y, x, delay, stagger, duration, start, end, selector, bidirectional, reduced]);
 
   return ref;
 }
