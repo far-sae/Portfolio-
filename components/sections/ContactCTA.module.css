@@ -1,0 +1,103 @@
+.section {
+  position: relative;
+  padding: 28vh 8vw 16vh;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+  max-height: 800px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 123, 50, 0.18) 0%, rgba(255, 123, 50, 0) 60%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: blur(8px);
+  z-index: 0;
+  will-change: transform;
+}
+
+.eyebrow {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+.headline {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin: 0 0 56px;
+}
+
+.cta {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 123, 50, 0.5);
+  background: rgba(255, 123, 50, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text);
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: transform 200ms var(--ease-out-quart),
+              background 200ms var(--ease-out-quart);
+}
+
+.cta:hover {
+  transform: scale(1.04);
+  background: rgba(255, 123, 50, 0.15);
+}
+
+.socials {
+  position: relative;
+  z-index: 1;
+  margin-top: 56px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color 200ms var(--ease-out-quart),
+              transform 200ms var(--ease-out-quart);
+}
+
+.socials a:hover {
+  border-color: var(--orange);
+  transform: translateY(-2px);
+}
+
+.socials svg {
+  width: 16px;
+  height: 16px;
+}
