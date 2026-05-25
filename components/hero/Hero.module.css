@@ -4,7 +4,7 @@
   height: 100vh;
   min-height: 100svh;
   overflow: hidden;
-  background: #050505;
+  background: var(--bg-deep);
 }
 
 .overlay {

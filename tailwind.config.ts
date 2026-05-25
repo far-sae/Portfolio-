@@ -5,8 +5,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: '#050505',
-        muted: 'rgba(255, 255, 255, 0.65)',
+        bg: '#0b0a0c',
+        bgDeep: '#07070a',
+        muted: 'rgba(245, 243, 238, 0.62)',
         orange: '#ff7b32',
         blueGlow: '#6ab7ff',
       },
